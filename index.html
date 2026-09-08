@@ -2,256 +2,849 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리나무학원 초등독해 Valencia and Navel Oranges 학습앱</title>
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<title>수리나무학원 - How Oranges Saved the Royal Navy</title>
 <style>
-:root{--main:#d46312;--main2:#87370d;--accent:#9bd23c;--light:#fff8df;--bg:#fff9e9;--text:#2d2117;--muted:#786757;--green:#258b45;--red:#d93b35;--line:#f1d89c;--shadow:0 8px 32px rgba(135,55,13,.16)}
-*{box-sizing:border-box} body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);margin:0;padding:16px;color:var(--text)}
-#app{max-width:540px;margin:0 auto;background:white;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;padding-bottom:30px;position:relative;min-height:92vh}
-.header{background:linear-gradient(135deg,var(--main) 0%,var(--main2) 100%);color:white;padding:24px 20px 18px;text-align:center;position:relative}
-.logo{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px;font-weight:1000;margin-bottom:8px;letter-spacing:-.5px}
-.logo .tree{font-size:1.35rem} .header-badge{background:var(--accent);color:#3b2600;font-size:11px;font-weight:1000;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px}
-.header h1{margin:0;font-size:20px;font-weight:1000;line-height:1.25} .header p{margin:6px 0 0;font-size:13px;opacity:.88;line-height:1.5}
-.nav{display:flex;padding:12px 10px 0;gap:5px;overflow-x:auto;background:#fff} .nav-btn{flex:1;min-width:60px;padding:9px 3px;border:none;border-radius:10px;background:#edf2f7;color:#4a5568;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap} .nav-btn.active{background:var(--main);color:#fff}
-.section{display:none;padding:16px 18px 0;animation:fadeIn .35s} .section.active{display:block} @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.card,.story-card{background:white;border:2px solid var(--line);border-radius:16px;padding:15px;margin-bottom:14px;line-height:1.65}
-.story-lead{background:var(--light);border-left:4px solid var(--main);padding:12px 13px;border-radius:12px;margin:0 0 14px;font-weight:900;line-height:1.6}
-.story-card h3{margin:0 0 10px;color:var(--main);font-size:17px;display:flex;gap:7px;align-items:center}
-.line-card{border-top:1px dashed #dbeafe;padding:10px 0} .line-card:first-of-type{border-top:none;padding-top:0} .speaker{display:inline-block;min-width:72px;color:var(--main);font-weight:1000;font-size:13px}
-.en-line{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.75;font-weight:700} .ko-line{font-size:14px;color:#475569;line-height:1.65;margin-top:3px;padding-left:2px}
-.tool-row{display:flex;gap:8px;margin-bottom:12px;align-items:center} .mini-btn{border:none;background:#edf2f7;border-radius:10px;padding:8px 10px;font-size:12px;font-weight:900;color:#475569;cursor:pointer}
-.evo-box{background:var(--light);border-radius:16px;padding:14px 16px;margin-bottom:14px;border:1.5px solid #b9d9f5;text-align:center} .evo-emoji{font-size:2.55rem;display:inline-block;transition:.25s} .evo-name{font-size:14px;font-weight:1000;color:var(--main);margin:3px 0 9px} .prog-bg{background:#d9ecff;height:11px;border-radius:8px;overflow:hidden} .prog-bar{background:linear-gradient(90deg,var(--accent),var(--main));height:100%;width:0%;transition:.5s;border-radius:8px}
-.status-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px} .status-badge{background:#edf2f7;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:900;color:#4a5568;display:inline-block}
-.word-display{font-size:1.72rem;font-weight:1000;color:var(--main);margin:14px 0 20px;text-align:center;line-height:1.35}
-.intro-wrap{text-align:center;padding:18px 10px} .intro-icon{font-size:3.6rem} .intro-wrap h2{color:var(--main);font-size:19px;margin:8px 0 6px} .intro-wrap p{color:#718096;font-weight:800;font-size:14px;line-height:1.6}
-.options-grid{display:grid;gap:9px;margin:12px 0} .opt-btn{width:100%;background:white;border:2px solid var(--line);border-radius:12px;padding:12px 13px;text-align:left;font-size:14px;font-weight:900;color:var(--text);cursor:pointer;line-height:1.45} .opt-btn.correct{border-color:var(--green);background:#d4edda;color:#176b37} .opt-btn.wrong{border-color:var(--red);background:#fde8e8;color:#b83227;animation:shake .38s}
-.primary-btn{width:100%;background:var(--main);color:white;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:1000;cursor:pointer;margin-top:12px;box-shadow:0 4px 12px rgba(26,92,154,.25)} .primary-btn.orange{background:var(--accent);color:#3b2600} .stop-btn{background:#edf2f7;border:none;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:900;cursor:pointer;color:#4a5568}
-.ko-meaning{background:#eef7ff;border-left:4px solid var(--main);border-radius:10px;padding:12px 14px;font-size:15px;font-weight:900;color:#0f355a;margin:10px 0 13px;line-height:1.6} .source-line{font-size:12px;color:#64748b;font-weight:800;margin-top:6px}
-#answer-area{min-height:60px;border:2px dashed var(--main);background:var(--light);padding:11px;border-radius:13px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;margin-bottom:10px;transition:.25s} #scramble-area{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;min-height:46px;margin-bottom:13px}
-.word-chip{background:white;border:2px solid #b9d9f5;padding:8px 12px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;user-select:none;touch-action:none;box-shadow:0 2px 5px rgba(15,53,90,.06)} .word-chip:active{transform:scale(.96)}
-.drag-tip{background:#fffbeb;border:1px solid #f6c94e;color:#8a6300;font-size:12px;font-weight:800;padding:8px 12px;border-radius:8px;margin-bottom:12px;line-height:1.5}
-.audio-row{display:flex;gap:8px;margin-top:10px} .audio-btn{flex:1;padding:11px;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;color:white} .speed-btn{background:#718096} .play-btn{background:var(--main)} .play-btn.playing{background:var(--red)}
-.grammar-sentence{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.75;background:#f6fbff;border-radius:14px;padding:13px;margin-bottom:12px;font-weight:700} .g-grid{display:grid;grid-template-columns:1fr;gap:8px} .g-choice{padding:11px 12px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:1000;cursor:pointer;text-align:left} .g-choice.correct{border-color:var(--green);background:#d4edda;color:#176b37} .g-choice.wrong{border-color:var(--red);background:#fde8e8;color:#b83227} .g-explain{display:none;background:#fff;border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:14px;line-height:1.6} .g-explain.show{display:block}
-#combo{position:absolute;top:26%;left:50%;transform:translate(-50%,-50%) scale(.5);font-size:2.25rem;font-weight:1000;color:var(--accent);text-shadow:0 3px 10px rgba(245,166,35,.45);opacity:0;pointer-events:none;z-index:99} .combo-pop{animation:comboAnim 1s cubic-bezier(.17,.89,.32,1.27) forwards} @keyframes comboAnim{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-60%) scale(.8)}} @keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-5px)}100%{transform:translateX(0)}}
-.stamp-overlay{position:fixed;inset:0;background:rgba(15,53,90,.42);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(3px)} .stamp-overlay.show{display:flex;animation:fadeIn .22s ease-out}.stamp-card{width:min(86vw,340px);background:white;border:5px solid var(--accent);border-radius:28px;padding:28px 20px;text-align:center;box-shadow:0 16px 50px rgba(0,0,0,.25);transform:rotate(-3deg);animation:stampPop .55s cubic-bezier(.18,.89,.32,1.28)}.stamp-icon{font-size:4.2rem;line-height:1;margin-bottom:8px}.stamp-text{font-size:1.9rem;font-weight:1000;color:var(--red);letter-spacing:-1px;text-shadow:0 2px 0 #ffe9a8}.stamp-btn{margin-top:16px;background:var(--main);color:#fff;border:none;border-radius:14px;padding:12px 24px;font-weight:1000;font-size:15px;cursor:pointer}@keyframes stampPop{0%{opacity:0;transform:scale(.2) rotate(-20deg)}60%{opacity:1;transform:scale(1.12) rotate(-3deg)}100%{transform:scale(1) rotate(-3deg)}}
-#reward-layer{position:fixed;inset:0;pointer-events:none;z-index:9998}.reward-pop{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);background:#fff7d6;border:2px solid var(--accent);color:#8a6300;border-radius:999px;padding:8px 16px;font-weight:1000;box-shadow:0 8px 24px rgba(245,166,35,.28);animation:rewardFly .95s ease-out forwards}.reward-pop.big{font-size:1.12rem;background:#eafff1;border-color:var(--green);color:#176b37}@keyframes rewardFly{0%{opacity:0;transform:translate(-50%,8px) scale(.7)}20%{opacity:1;transform:translate(-50%,-14px) scale(1.08)}100%{opacity:0;transform:translate(-50%,-78px) scale(.95)}}.spark{position:absolute;font-size:1.5rem;animation:sparkFly .85s ease-out forwards}@keyframes sparkFly{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(180deg)}}
-.simple-summary{display:grid;grid-template-columns:1fr;gap:10px}.simple-card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px}.simple-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}.simple-title{font-weight:1000;color:var(--main)}.simple-count{font-size:1.45rem;font-weight:1000;color:var(--green);white-space:nowrap}.mini-bar{height:11px;border-radius:999px;background:#edf2f7;overflow:hidden}.mini-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:999px;transition:.35s}.finish-note{background:#fffbeb;border:1.5px solid #f6c94e;border-radius:14px;padding:12px;margin-bottom:12px;font-weight:900;color:#8a6300;line-height:1.55;text-align:center}
-@media(max-width:420px){body{padding:8px}#app{border-radius:18px}.header{padding:20px 14px 15px}.header h1{font-size:18px}.section{padding:14px 13px 0}.word-chip{font-size:13.5px;padding:8px 10px}.en-line{font-size:15.5px}}
+:root{--main:#c56320;--deep:#173c55;--rose:#fff6eb;--line:#f0d5b7;--gold:#ffd16e;--green:#1e9d65;--red:#d94050;--ink:#283e4b;--muted:#697681;--shadow:0 14px 42px rgba(27,59,79,.14)}
+*{box-sizing:border-box}body{margin:0;padding:14px;background:linear-gradient(145deg,#fff6e9,#f7f7f2 52%,#ecf5fb);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}button{font-family:inherit;cursor:pointer}#app{max-width:540px;min-height:calc(100vh - 28px);margin:auto;background:#fff;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;padding-bottom:26px}.header{position:relative;padding:24px 18px 20px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--main),var(--deep))}.header:after{content:"⚓";position:absolute;right:20px;top:10px;font-size:52px;opacity:.19}.badge{display:inline-block;padding:4px 11px;margin-bottom:7px;border-radius:20px;background:var(--gold);color:#5b3c00;font-size:11px;font-weight:900}.header h1{margin:0 0 5px;font-size:23px;line-height:1.25}.header p{margin:0;font-size:13px;font-weight:700;opacity:.88}.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:11px 10px 0}.nav-btn{border:0;border-radius:10px;padding:10px 2px;background:#f1edf2;color:#655b68;font-size:12px;font-weight:900}.nav-btn.active{background:var(--main);color:#fff}.section{display:none;padding:16px 18px 0;animation:fade .2s}.section.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}.intro{text-align:center;padding:17px 5px}.intro-icon{font-size:55px}.intro h2{margin:7px 0;color:var(--deep);font-size:20px}.intro p{margin:0;color:var(--muted);font-size:14px;font-weight:700;line-height:1.65}.primary{width:100%;border:0;border-radius:13px;padding:14px;margin-top:15px;background:var(--main);color:#fff;font-size:16px;font-weight:900;box-shadow:0 5px 14px rgba(197,99,32,.20)}.secondary{border:0;border-radius:9px;padding:8px 11px;background:#f1edf2;color:#645767;font-size:12px;font-weight:900}.hidden{display:none!important}.status-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}.status{display:inline-block;padding:6px 11px;border-radius:20px;background:#f1edf2;color:#5f5262;font-size:13px;font-weight:900}.progress-card{padding:12px 14px;margin-bottom:13px;border:1.5px solid var(--line);border-radius:15px;background:var(--rose);text-align:center}.progress-icon{font-size:34px}.progress-label{margin:2px 0 8px;color:var(--deep);font-size:13px;font-weight:900}.bar-bg{height:10px;border-radius:10px;background:#f2dce1;overflow:hidden}.bar{height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,var(--gold),var(--main));transition:width .3s}.word-en{margin:18px 0 21px;text-align:center;color:var(--deep);font-size:29px;font-weight:900;line-height:1.25}.options{display:grid;gap:9px}.option{border:2px solid var(--line);border-radius:13px;padding:13px;background:#fff;color:var(--ink);font-size:15px;font-weight:800;text-align:left}.option.correct{background:#ddf7e9;border-color:var(--green);color:#126b43}.option.wrong{background:#ffe7ea;border-color:var(--red);color:#a72b3c;animation:shake .28s}@keyframes shake{25%{transform:translateX(-4px)}50%{transform:translateX(4px)}75%{transform:translateX(-3px)}}.meaning{margin:10px 0 12px;padding:13px 14px;border-left:4px solid var(--main);border-radius:10px;background:var(--rose);color:var(--deep);font-size:15px;font-weight:900;line-height:1.6}.note{padding:8px 11px;margin-bottom:10px;border:1px solid #ecd08a;border-radius:9px;background:#fff9df;color:#735900;font-size:12px;font-weight:800;line-height:1.5}.answer,.bank{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;padding:10px;border-radius:13px}.answer{min-height:58px;margin-bottom:9px;border:2px dashed var(--main);background:var(--rose)}.answer.bad{border-color:var(--red);background:#ffe9ec}.answer.good{border-color:var(--green);background:#e1f8eb}.bank{min-height:53px;margin-bottom:9px;border:1px solid #f0e7ec}.chip{border:2px solid var(--line);border-radius:10px;padding:8px 11px;background:#fff;color:var(--ink);font-size:14px;font-weight:900;user-select:none;touch-action:manipulation}.chip.dragging{opacity:.35}.write-actions,.audio-row{display:flex;gap:8px}.write-actions button,.audio-row button{flex:1;border:0;border-radius:10px;padding:11px;font-size:13px;font-weight:900}.check-btn{background:var(--green);color:#fff}.clear-btn{background:#f1edf2;color:#5f5262}.audio-btn{color:#fff}.speed{background:#786d7c}.play{background:var(--main)}.mastery{margin-top:10px;padding:10px 12px;border-radius:10px;background:#f7f3f6;color:#695d6c;font-size:12px;font-weight:800;line-height:1.55}.retry{color:var(--red)}.completion{text-align:center;padding:20px 5px}.completion-icon{font-size:59px}.completion h2{margin:7px 0;color:var(--deep)}.completion p{color:var(--muted);font-weight:800;line-height:1.6}.score{font-size:48px;font-weight:900;color:var(--main)}.analysis-ko{padding:12px 14px;margin:10px 0;border-radius:10px;background:var(--rose);border-left:4px solid var(--main);font-size:15px;font-weight:900;line-height:1.55}.stage{display:inline-block;padding:5px 11px;border-radius:20px;background:#e3f6ed;color:#126b43;font-size:12px;font-weight:900}.stage.two{background:#eee6ff;color:#5d4394}.chunks,.choices{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}.chunk{min-width:78px;border:2px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.chunk.active{border-color:var(--main);box-shadow:0 0 0 3px rgba(197,99,32,.10)}.chunk.done{border-color:var(--green);background:#eefaf4;pointer-events:none}.chunk-en{padding:7px 8px;border-bottom:1px dashed var(--line);background:#fffbf5;font-size:12px;font-weight:900;text-align:center}.chunk-answer{min-height:25px;padding:5px 6px;color:#9b8f9d;font-size:11px;font-weight:900;text-align:center}.choice{flex:1 1 calc(33.333% - 8px);border:0;border-radius:10px;padding:10px 4px;background:#f1edf2;color:var(--ink);font-size:12px;font-weight:900}.explain{display:none;padding:13px;border:2px solid var(--gold);border-radius:13px;background:#fff}.explain.show{display:block}.detail{padding:8px 10px;margin-top:7px;border-left:3px solid var(--main);border-radius:7px;background:#fff8ee;font-size:12px;font-weight:700;line-height:1.55}.pattern{padding:15px;border:3px dashed var(--main);border-radius:13px;background:var(--rose);text-align:center;color:var(--deep);font-size:18px;font-weight:900}.record-title{margin:2px 0 10px;color:var(--deep);font-size:19px}.record-card{padding:13px;margin-bottom:9px;border:1.5px solid #eadfe5;border-radius:12px}.record-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.record-name,.record-value{font-weight:900}.record-name{color:var(--deep)}.record-value{color:var(--green)}.record-sub{margin-top:5px;color:var(--muted);font-size:12px;font-weight:700}.empty{padding:15px;border-radius:10px;background:#f6f2f5;color:#958997;text-align:center;font-size:13px;font-weight:800}#toast{position:fixed;left:50%;bottom:24px;z-index:100;transform:translate(-50%,20px);padding:9px 14px;border-radius:20px;background:rgba(48,36,55,.94);color:#fff;font-size:13px;font-weight:900;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:380px){body{padding:0}#app{min-height:100vh;border-radius:0}.section{padding-left:14px;padding-right:14px}.nav-btn{font-size:11px}.chip{padding:7px 9px;font-size:13px}.word-en{font-size:25px}}
+
+.header h1{font-size:25px;line-height:1.2}.header:after{pointer-events:none}
+.source-label{margin:0 0 5px;color:var(--muted);font-size:12px;font-weight:800}
+.chip{touch-action:none}.chip.dragging{opacity:.5;outline:2px solid var(--main)}
+button:focus-visible{outline:3px solid #207cb1;outline-offset:3px}
+button:disabled{cursor:default}.write-actions button:disabled{opacity:.6}
+.record-foot{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 0}
+.chunk{max-width:100%}.chunk-en{overflow-wrap:anywhere;max-width:450px}
+.pattern{font-size:16px;line-height:1.5}.pattern .primary{font-size:14px}
+.nav-btn{min-height:40px}.progress-card{border-color:var(--line)}
+.bar-bg{background:#f4e4ce}.chunk-en{background:#fffbf5}
+@media(max-width:380px){.header h1{font-size:23px}.choice{flex-basis:calc(50% - 8px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+.tools-row{display:flex;justify-content:flex-end;padding:8px 16px 0}
+.effects-toggle{border:1px solid #eee1cf;background:#fffbf6;color:#78664e;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.effects-toggle[aria-pressed="true"]{color:#925317;background:#fff2dc;border-color:#f0d5b7}
+.chip{touch-action:none;cursor:grab;position:relative;-webkit-user-select:none;user-select:none}
+.chip:active{cursor:grabbing}.chip.dragging{opacity:.28;outline:none}
+.drag-ghost{position:fixed!important;left:0;top:0;margin:0!important;z-index:300;pointer-events:none;opacity:.96!important;background:#fffdf7!important;border-color:var(--main)!important;box-shadow:0 12px 25px #173c5538;will-change:transform;transition:none!important;animation:none!important;outline:none!important}
+.answer.drop-active,.bank.drop-active{border-color:var(--green);background:#effaf1}
+#drag-marker{position:fixed;z-index:299;width:3px;border-radius:3px;background:var(--green);pointer-events:none;box-shadow:0 0 0 2px #ffffffb3}
+.pass-badge{position:fixed;z-index:200;transform:translate(-50%,-50%);padding:10px 20px;border-radius:30px;background:#168351;color:#fff;font-size:18px;font-weight:900;white-space:nowrap;box-shadow:0 7px 26px #126b4338;pointer-events:none;animation:pass-pop .62s ease both}
+.pass-badge.complete{font-size:22px;padding:14px 26px;background:linear-gradient(120deg,#198855,#116548);animation:pass-pop 1.5s ease both}
+.pass-spark{position:fixed;z-index:199;width:7px;height:7px;border-radius:2px;pointer-events:none;animation:spark-flight .7s ease-out both}
+.success-pulse{animation:success-glow .5s ease}
+@keyframes pass-pop{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}20%,70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-75%) scale(1.03)}}
+@keyframes spark-flight{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.8) rotate(150deg)}}
+@keyframes success-glow{0%,100%{box-shadow:0 0 0 0 #1e9d6500}35%{box-shadow:0 0 0 6px #1e9d6533}}
+@media(prefers-reduced-motion:reduce){.pass-badge{animation:none!important}.pass-spark{display:none}}
+
 </style>
 </head>
 <body>
-<div id="app">
-<div id="combo"></div>
-<div id="stamp-overlay" class="stamp-overlay"><div class="stamp-card"><div class="stamp-icon">🏅</div><div id="stamp-text" class="stamp-text">잘했어요!</div><button class="stamp-btn" onclick="hideStamp()">계속하기</button></div></div>
-<div id="reward-layer"></div>
-
-<div class="header">
-  <div class="logo"><span class="tree">🌳</span><span>수리나무학원</span></div><br>
-  <div class="header-badge">Elementary Reading · Social Studies &amp; Science</div>
-  <h1>Valencia and Navel Oranges</h1>
-  <p>본문 · 핵심단어 · 문장 영작 · 독해/어법 · 기록</p>
-</div>
-
-<div class="nav">
-  <button class="nav-btn active" onclick="showSection('story-sec',this)">본문</button>
-  <button class="nav-btn" onclick="showSection('word-sec',this)">1.단어</button>
-  <button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
-  <button class="nav-btn" onclick="showSection('grammar-sec',this)">3.확인</button>
-  <button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
-</div>
-
-<div id="story-sec" class="section active">
-  <div class="story-lead">🍊 발렌시아 오렌지와 네이블 오렌지는 어떻게 다를까요? 영어 문장 아래 해석을 확인하며 두 오렌지의 특징을 비교해 보세요.</div>
-  <div class="tool-row"><button class="mini-btn" onclick="toggleKorean()">해석 보이기/숨기기</button><button class="mini-btn" onclick="speakAllCurrentStory()">본문 듣기</button><button class="mini-btn" onclick="stopLoop()">음성 정지</button></div>
-  <div id="story-list"></div>
-</div>
-
-<div id="word-sec" class="section">
-  <div id="word-intro" class="intro-wrap">
-    <div class="intro-icon">🍊</div><h2>핵심 단어</h2><p>Valencia and Navel Oranges의 주요 어휘를<br>4지선다로 빠르게 확인합니다.</p>
-    <button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button>
-  </div>
-  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🌱</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
-  <div id="word-result" style="display:none;text-align:center"><div class="intro-icon">🏆</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">0/0</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
-</div>
-
-<div id="dict-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="devo-e">🌱</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
-  <div class="status-row"><span class="status-badge" id="d-status"></span><button class="stop-btn" onclick="dIdx=0;loadDict()">처음부터</button></div>
-  <div class="ko-meaning" id="d-ko"></div><div class="source-line" id="d-source"></div><div class="drag-tip">낱말을 눌러 문장을 완성하세요. 답안 칸에서는 단어를 드래그해서 순서를 바꿀 수 있습니다. 맞으면 효과음과 함께 자동으로 다음 문장으로 넘어갑니다.</div>
-  <div id="answer-area"></div><div id="scramble-area"></div>
-  <div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
-</div>
-
-<div id="grammar-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="gevo-e">🌱</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
-  <div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="gIdx=0;renderGrammar()">처음으로</button></div>
-  <div id="grammar-box"></div>
-</div>
-
-<div id="hist-sec" class="section"><h3 style="color:var(--main);margin-top:0">📘 학습 기록</h3><div id="hist-list"></div></div>
-</div>
-
+<main id="app">
+ <header class="header"><span class="badge">Lesson 7 · Oranges</span><h1>How Oranges<br>Saved the Royal Navy</h1><p>수리나무학원 영어 학습 앱</p></header>
+ <nav class="nav"><button class="nav-btn active" data-target="word-sec">1. 단어</button><button class="nav-btn" data-target="write-sec">2. 영작</button><button class="nav-btn" data-target="analysis-sec">3. 분석</button><button class="nav-btn" data-target="record-sec">4. 기록</button></nav><div class="tools-row"><button id="effects-toggle" class="effects-toggle" type="button" aria-pressed="true">♪ 효과음 켜짐</button></div>
+ <section id="word-sec" class="section active">
+  <div id="word-intro" class="intro"><div class="intro-icon">🍊</div><h2>핵심 단어 36개</h2><p>뜻을 고르는 4지선다 테스트입니다.<br>틀리면 정답을 바로 확인합니다.</p><button id="word-start" class="primary">단어 테스트 시작</button></div>
+  <div id="word-quiz" class="hidden"><div class="status-row"><span id="word-status" class="status"></span><button id="word-stop" class="secondary">중간 채점</button></div><div class="progress-card"><div id="word-icon" class="progress-icon">⛵</div><div id="word-progress-label" class="progress-label"></div><div class="bar-bg"><div id="word-bar" class="bar"></div></div></div><div id="word-en" class="word-en"></div><div id="word-options" class="options"></div></div>
+  <div id="word-result" class="completion hidden"><div class="completion-icon">🏅</div><h2>단어 테스트 완료</h2><div id="word-score" class="score"></div><p id="word-detail"></p><button id="word-again" class="primary">다시 시작</button></div>
+ </section>
+ <section id="write-sec" class="section">
+  <div id="write-intro" class="intro"><div class="intro-icon">✍️</div><h2>영작 17문항</h2><p>본문 15문장 + 확인 질문 2개를 영작합니다.<br>틀린 문장은 오답 재시험에서 다시 출제됩니다.</p><button id="write-start" class="primary">영작 시작</button><button id="write-reset-intro" class="secondary" style="margin-top:10px">저장된 진행 초기화</button></div>
+  <div id="write-quiz" class="hidden"><div class="status-row"><span id="write-status" class="status"></span><button id="write-reset" class="secondary">처음부터</button></div><div class="progress-card"><div id="write-icon" class="progress-icon">⛵</div><div id="write-progress-label" class="progress-label"></div><div class="bar-bg"><div id="write-bar" class="bar"></div></div></div><div id="write-source" class="source-label"></div><div id="write-meaning" class="meaning"></div><div class="note">단어를 터치해 문장을 만드세요. 답안 단어를 터치하면 다시 내려갑니다. 답안 안에서는 드래그로 순서를 바꿀 수 있습니다. 대소문자와 구두점은 채점에서 제외됩니다.</div><div id="answer-area" class="answer" aria-label="영작 답안"></div><div id="word-bank" class="bank" aria-label="단어 목록"></div><div class="write-actions"><button id="clear-answer" class="clear-btn">답안 비우기</button><button id="check-answer" class="check-btn">채점하기</button></div><div class="audio-row" style="margin-top:8px"><button id="speed-btn" class="audio-btn speed">미국식 보통</button><button id="play-btn" class="audio-btn play">음성 재생</button></div><div id="mastery-info" class="mastery"></div></div>
+  <div id="write-result" class="completion hidden"><div class="completion-icon">🏆</div><h2>영작 100% 통과!</h2><p id="write-detail"></p><button id="write-again" class="primary">처음부터 다시 학습</button></div>
+ </section>
+ <section id="analysis-sec" class="section">
+  <div id="analysis-intro" class="intro"><div class="intro-icon">🧩</div><h2>문장 분석 12문장</h2><p>1단계 품사·구, 2단계 문장 성분을<br>차례로 정확하게 확인합니다.</p><button id="analysis-start" class="primary">분석 시작</button></div>
+  <div id="analysis-quiz" class="hidden"><div class="status-row"><span id="analysis-stage" class="stage"></span><span id="analysis-count" class="status"></span></div><div class="progress-card"><div id="analysis-icon" class="progress-icon">⛵</div><div id="analysis-progress-label" class="progress-label"></div><div class="bar-bg"><div id="analysis-bar" class="bar"></div></div></div><div id="analysis-ko" class="analysis-ko"></div><div id="analysis-chunks" class="chunks"></div><div id="analysis-choices" class="choices"></div><div id="analysis-explain" class="explain"><strong style="color:var(--deep)">1단계 완료 - 핵심 설명</strong><div id="analysis-details"></div><button id="analysis-step2" class="primary">2단계 문장 성분</button></div><div id="analysis-result-box"></div></div>
+  <div id="analysis-result" class="completion hidden"><div class="completion-icon">🏅</div><h2>문장 분석 완료!</h2><p>12문장의 품사·구와 문장 성분을 모두 확인했습니다.</p><button id="analysis-again" class="primary">다시 분석</button></div>
+ </section>
+ <section id="record-sec" class="section"><h2 class="record-title">학습 기록</h2><div id="record-list"></div><p class="record-foot">이 기기·브라우저에 저장됩니다. 다른 기기와 자동으로 공유되지 않습니다.</p><button id="clear-records" class="secondary" style="width:100%;margin-top:10px">기록 비우기</button></section>
+</main><div id="toast" role="status" aria-live="polite"></div>
 <script>
-
-const STORE='sr_elementary_valencia_navel_oranges_v1';
-const activeStorySections = [
-  {"title":"Let’s Focus","emoji":"🔎","lines":[
-    {"speaker":"Focus","en":"How are Valencia and Navel oranges different?","ko":"발렌시아 오렌지와 네이블 오렌지는 어떻게 다를까요?"},
-    {"speaker":"Text","en":"Oranges are popular all around the world.","ko":"오렌지는 전 세계에서 인기가 있습니다."},
-    {"speaker":"Text","en":"But oranges are not all the same.","ko":"하지만 오렌지가 모두 똑같은 것은 아닙니다."},
-    {"speaker":"Text","en":"Let’s look at two of the world’s favorite oranges.","ko":"세계에서 가장 사랑받는 오렌지 두 종류를 살펴봅시다."}
-  ]},
-  {"title":"Valencia Oranges","emoji":"🍹","lines":[
-    {"speaker":"Text","en":"Valencia oranges got their name from the city of Valencia, Spain.","ko":"발렌시아 오렌지는 스페인의 발렌시아라는 도시에서 이름을 얻었습니다."},
-    {"speaker":"Text","en":"Surprisingly, they are actually from the United States!","ko":"놀랍게도 그것들은 사실 미국에서 왔습니다!"},
-    {"speaker":"Text","en":"These oranges have thin skin and some seeds.","ko":"이 오렌지들은 껍질이 얇고 씨가 조금 있습니다."},
-    {"speaker":"Text","en":"They are also very juicy.","ko":"그것들은 또한 즙이 매우 많습니다."},
-    {"speaker":"Text","en":"So people make juice with them!","ko":"그래서 사람들은 그것들로 주스를 만듭니다!"}
-  ]},
-  {"title":"Navel Oranges","emoji":"🍊","lines":[
-    {"speaker":"Info","en":"Navel means a belly button.","ko":"navel은 ‘배꼽’을 뜻합니다."},
-    {"speaker":"Text","en":"Navel oranges have a funny name.","ko":"네이블 오렌지는 재미있는 이름을 가지고 있습니다."},
-    {"speaker":"Text","en":"The bottom of the fruit looks like a belly button!","ko":"과일의 밑부분은 배꼽처럼 보입니다!"},
-    {"speaker":"Text","en":"These oranges have thick skin and no seeds.","ko":"이 오렌지들은 껍질이 두껍고 씨가 없습니다."},
-    {"speaker":"Text","en":"They are also very sweet.","ko":"그것들은 또한 매우 달콤합니다."},
-    {"speaker":"Text","en":"So people love eating them!","ko":"그래서 사람들은 그것들을 먹는 것을 매우 좋아합니다!"}
-  ]}
+"use strict";
+const STORE="sr_oranges_royal_navy_v1";
+const words=[
+ {
+  "en": "Royal Navy",
+  "ko": "영국 해군"
+ },
+ {
+  "en": "go on a trip",
+  "ko": "여행을 떠나다"
+ },
+ {
+  "en": "sea trip",
+  "ko": "항해, 바다 여행"
+ },
+ {
+  "en": "during",
+  "ko": "~ 동안"
+ },
+ {
+  "en": "sailor",
+  "ko": "선원"
+ },
+ {
+  "en": "get sick",
+  "ko": "병이 들다"
+ },
+ {
+  "en": "same",
+  "ko": "같은"
+ },
+ {
+  "en": "problem",
+  "ko": "문제"
+ },
+ {
+  "en": "bleed",
+  "ko": "피가 나다, 출혈하다"
+ },
+ {
+  "en": "mouth",
+  "ko": "입"
+ },
+ {
+  "en": "sadly",
+  "ko": "슬프게도"
+ },
+ {
+  "en": "die",
+  "ko": "죽다"
+ },
+ {
+  "en": "doctor",
+  "ko": "의사"
+ },
+ {
+  "en": "one day",
+  "ko": "어느 날"
+ },
+ {
+  "en": "idea",
+  "ko": "생각, 아이디어"
+ },
+ {
+  "en": "choose - chose",
+  "ko": "고르다 - 골랐다"
+ },
+ {
+  "en": "twelve",
+  "ko": "열둘(의)"
+ },
+ {
+  "en": "make - made",
+  "ko": "만들다 - 만들었다"
+ },
+ {
+  "en": "pair",
+  "ko": "한 쌍, 두 사람으로 된 한 조"
+ },
+ {
+  "en": "give - gave",
+  "ko": "주다 - 주었다"
+ },
+ {
+  "en": "each",
+  "ko": "각각의"
+ },
+ {
+  "en": "different",
+  "ko": "서로 다른"
+ },
+ {
+  "en": "medicine",
+  "ko": "약"
+ },
+ {
+  "en": "for example",
+  "ko": "예를 들어"
+ },
+ {
+  "en": "orange",
+  "ko": "오렌지"
+ },
+ {
+  "en": "another",
+  "ko": "또 다른"
+ },
+ {
+  "en": "drink - drank",
+  "ko": "마시다 - 마셨다"
+ },
+ {
+  "en": "vinegar",
+  "ko": "식초"
+ },
+ {
+  "en": "a few days later",
+  "ko": "며칠 후에"
+ },
+ {
+  "en": "much better",
+  "ko": "훨씬 더 나은"
+ },
+ {
+  "en": "both",
+  "ko": "둘 다"
+ },
+ {
+  "en": "eat - ate",
+  "ko": "먹다 - 먹었다"
+ },
+ {
+  "en": "vitamin C",
+  "ko": "비타민 C"
+ },
+ {
+  "en": "save",
+  "ko": "구하다"
+ },
+ {
+  "en": "usually",
+  "ko": "보통, 대개"
+ },
+ {
+  "en": "become - became",
+  "ko": "~이 되다 - ~이 되었다"
+ }
 ];
-
-const activeWordList = [
-  {"en":"popular","ko":"인기 있는"},
-  {"en":"all around the world","ko":"전 세계에서"},
-  {"en":"not all the same","ko":"모두 똑같은 것은 아닌"},
-  {"en":"look at","ko":"~을 살펴보다"},
-  {"en":"two of","ko":"~ 중 두 개, 두 종류"},
-  {"en":"favorite","ko":"가장 좋아하는"},
-  {"en":"different","ko":"다른, 차이가 있는"},
-  {"en":"Valencia orange","ko":"발렌시아 오렌지"},
-  {"en":"get one’s name from","ko":"~에서 이름을 따오다"},
-  {"en":"city","ko":"도시"},
-  {"en":"surprisingly","ko":"놀랍게도"},
-  {"en":"actually","ko":"사실은, 실제로"},
-  {"en":"the United States","ko":"미국"},
-  {"en":"thin","ko":"얇은"},
-  {"en":"skin","ko":"껍질"},
-  {"en":"seed","ko":"씨, 씨앗"},
-  {"en":"juicy","ko":"즙이 많은"},
-  {"en":"make juice with","ko":"~로 주스를 만들다"},
-  {"en":"Navel orange","ko":"네이블 오렌지"},
-  {"en":"funny","ko":"재미있는, 우스운"},
-  {"en":"bottom","ko":"밑부분, 바닥"},
-  {"en":"fruit","ko":"과일"},
-  {"en":"look like","ko":"~처럼 보이다"},
-  {"en":"belly button","ko":"배꼽"},
-  {"en":"thick","ko":"두꺼운"},
-  {"en":"no seeds","ko":"씨가 없는"},
-  {"en":"sweet","ko":"달콤한"},
-  {"en":"love eating","ko":"먹는 것을 매우 좋아하다"}
+const sentences=[
+ {
+  "en": "In 1747, the Royal Navy went on a long sea trip.",
+  "ko": "1747년에 영국 해군은 긴 항해를 떠났습니다.",
+  "kind": "본문",
+  "source": 1
+ },
+ {
+  "en": "During the trip, many of the sailors got sick.",
+  "ko": "항해 중에 많은 선원들이 병에 걸렸습니다.",
+  "kind": "본문",
+  "source": 2
+ },
+ {
+  "en": "They all had the same problem.",
+  "ko": "그들은 모두 같은 문제를 겪고 있었습니다.",
+  "kind": "본문",
+  "source": 3
+ },
+ {
+  "en": "They were bleeding from the mouth.",
+  "ko": "그들은 입에서 피를 흘리고 있었습니다.",
+  "kind": "본문",
+  "source": 4
+ },
+ {
+  "en": "Sadly, many of them died.",
+  "ko": "슬프게도 그들 중 많은 사람들이 죽었습니다.",
+  "kind": "본문",
+  "source": 5
+ },
+ {
+  "en": "James Lind was a doctor in the Royal Navy.",
+  "ko": "제임스 린드는 영국 해군의 의사였습니다.",
+  "kind": "본문",
+  "source": 6
+ },
+ {
+  "en": "One day, he had an idea.",
+  "ko": "어느 날 그는 한 가지 생각이 떠올랐습니다.",
+  "kind": "본문",
+  "source": 7
+ },
+ {
+  "en": "He chose twelve sick people and made six pairs.",
+  "ko": "그는 아픈 사람 12명을 골라 두 명씩 6개 조를 만들었습니다.",
+  "kind": "본문",
+  "source": 8
+ },
+ {
+  "en": "Then he gave each pair different medicine.",
+  "ko": "그런 다음 그는 각 조에 서로 다른 약을 주었습니다.",
+  "kind": "본문",
+  "source": 9
+ },
+ {
+  "en": "For example, one pair had oranges.",
+  "ko": "예를 들어 한 조는 오렌지를 먹었습니다.",
+  "kind": "본문",
+  "source": 10
+ },
+ {
+  "en": "Another pair drank vinegar.",
+  "ko": "다른 한 조는 식초를 마셨습니다.",
+  "kind": "본문",
+  "source": 11
+ },
+ {
+  "en": "A few days later, two sailors became much better.",
+  "ko": "며칠 후 두 선원의 상태가 훨씬 더 좋아졌습니다.",
+  "kind": "본문",
+  "source": 12
+ },
+ {
+  "en": "Why?",
+  "ko": "왜 그랬을까요?",
+  "kind": "본문",
+  "source": 13
+ },
+ {
+  "en": "They both ate oranges!",
+  "ko": "그 두 사람은 모두 오렌지를 먹었습니다!",
+  "kind": "본문",
+  "source": 14
+ },
+ {
+  "en": "The vitamin C in the oranges saved them.",
+  "ko": "오렌지에 들어 있는 비타민 C가 그들을 구했습니다.",
+  "kind": "본문",
+  "source": 15
+ },
+ {
+  "en": "What did James Lind do to save sick sailors?",
+  "ko": "제임스 린드는 아픈 선원들을 구하기 위해 무엇을 했나요?",
+  "kind": "Let's Focus",
+  "source": 1
+ },
+ {
+  "en": "How do you usually get vitamin C?",
+  "ko": "여러분은 보통 어떻게 비타민 C를 섭취하나요?",
+  "kind": "Link to Self",
+  "source": 2
+ }
 ];
-
-const activeSentenceList = [
-  {"speaker":"Text","full":"Oranges are popular all around the world.","ko":"오렌지는 전 세계에서 인기가 있습니다.","section":"Introduction"},
-  {"speaker":"Text","full":"But oranges are not all the same.","ko":"하지만 오렌지가 모두 똑같은 것은 아닙니다.","section":"Introduction"},
-  {"speaker":"Text","full":"Let’s look at two of the world’s favorite oranges.","ko":"세계에서 가장 사랑받는 오렌지 두 종류를 살펴봅시다.","section":"Introduction"},
-  {"speaker":"Text","full":"Valencia oranges got their name from the city of Valencia, Spain.","ko":"발렌시아 오렌지는 스페인의 발렌시아라는 도시에서 이름을 얻었습니다.","section":"Valencia Oranges"},
-  {"speaker":"Text","full":"Surprisingly, they are actually from the United States!","ko":"놀랍게도 그것들은 사실 미국에서 왔습니다!","section":"Valencia Oranges"},
-  {"speaker":"Text","full":"These oranges have thin skin and some seeds.","ko":"이 오렌지들은 껍질이 얇고 씨가 조금 있습니다.","section":"Valencia Oranges"},
-  {"speaker":"Text","full":"They are also very juicy.","ko":"그것들은 또한 즙이 매우 많습니다.","section":"Valencia Oranges"},
-  {"speaker":"Text","full":"So people make juice with them!","ko":"그래서 사람들은 그것들로 주스를 만듭니다!","section":"Valencia Oranges"},
-  {"speaker":"Text","full":"Navel oranges have a funny name.","ko":"네이블 오렌지는 재미있는 이름을 가지고 있습니다.","section":"Navel Oranges"},
-  {"speaker":"Text","full":"The bottom of the fruit looks like a belly button!","ko":"과일의 밑부분은 배꼽처럼 보입니다!","section":"Navel Oranges"},
-  {"speaker":"Text","full":"These oranges have thick skin and no seeds.","ko":"이 오렌지들은 껍질이 두껍고 씨가 없습니다.","section":"Navel Oranges"},
-  {"speaker":"Text","full":"They are also very sweet.","ko":"그것들은 또한 매우 달콤합니다.","section":"Navel Oranges"},
-  {"speaker":"Text","full":"So people love eating them!","ko":"그래서 사람들은 그것들을 먹는 것을 매우 좋아합니다!","section":"Navel Oranges"}
+const analysisData=[
+ {
+  "source": 1,
+  "ko": "1747년에 영국 해군은 긴 항해를 떠났습니다.",
+  "chunks": [
+   [
+    "In 1747",
+    "전치사구",
+    "수식어"
+   ],
+   [
+    "the Royal Navy",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "went",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "on a long sea trip",
+    "전치사구",
+    "수식어"
+   ]
+  ],
+  "note": "went는 go의 과거형입니다. go on a trip은 “여행을 떠나다”라는 표현입니다. In 1747은 때를 나타내며, on a long sea trip도 전치사구입니다. 두 전치사구는 문장의 수식어입니다.",
+  "pattern": "1형식 (S + V)"
+ },
+ {
+  "source": 2,
+  "ko": "항해 중에 많은 선원들이 병에 걸렸습니다.",
+  "chunks": [
+   [
+    "During the trip",
+    "전치사구",
+    "수식어"
+   ],
+   [
+    "many of the sailors",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "got",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "sick",
+    "형용사(구)",
+    "보어"
+   ]
+  ],
+  "note": "many of the sailors는 “그 선원들 중 많은 사람들”이라는 뜻이며 전체가 주어입니다. get + 형용사는 “~한 상태가 되다”입니다. sick은 주어의 상태를 설명하는 보어입니다.",
+  "pattern": "2형식 (S + V + C)"
+ },
+ {
+  "source": 4,
+  "ko": "그들은 입에서 피를 흘리고 있었습니다.",
+  "chunks": [
+   [
+    "They",
+    "대명사",
+    "주어"
+   ],
+   [
+    "were bleeding",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "from the mouth",
+    "전치사구",
+    "수식어"
+   ]
+  ],
+  "note": "were bleeding은 “피를 흘리고 있었다”라는 과거진행형입니다. were와 bleeding을 함께 동사구로 묶습니다. 여기서 bleed는 목적어 없이 쓰였으며, from the mouth는 출혈 부위를 나타내는 수식어입니다.",
+  "pattern": "1형식 (S + V) · 과거진행형"
+ },
+ {
+  "source": 5,
+  "ko": "슬프게도 그들 중 많은 사람들이 죽었습니다.",
+  "chunks": [
+   [
+    "Sadly",
+    "부사(구)",
+    "수식어"
+   ],
+   [
+    "many of them",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "died",
+    "동사(구)",
+    "서술어"
+   ]
+  ],
+  "note": "Sadly는 문장 전체에 대한 말하는 사람의 감정을 나타내는 부사입니다. many of them 전체가 주어이고, died는 die의 과거형입니다. die는 목적어 없이 쓰는 자동사입니다.",
+  "pattern": "1형식 (S + V)"
+ },
+ {
+  "source": 6,
+  "ko": "제임스 린드는 영국 해군의 의사였습니다.",
+  "chunks": [
+   [
+    "James Lind",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "was",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "a doctor in the Royal Navy",
+    "명사(구)",
+    "보어"
+   ]
+  ],
+  "note": "a doctor in the Royal Navy 전체가 명사구이며 주격 보어입니다. 이 안에서 in the Royal Navy는 doctor를 꾸며 “영국 해군에 속한 의사”라는 뜻을 더합니다. 주어 James Lind와 보어 a doctor가 같은 사람을 가리킵니다.",
+  "pattern": "2형식 (S + V + C)"
+ },
+ {
+  "source": 7,
+  "ko": "어느 날 그는 한 가지 생각이 떠올랐습니다.",
+  "chunks": [
+   [
+    "One day",
+    "명사(구)",
+    "수식어"
+   ],
+   [
+    "he",
+    "대명사",
+    "주어"
+   ],
+   [
+    "had",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "an idea",
+    "명사(구)",
+    "목적어"
+   ]
+  ],
+  "note": "One day는 “어느 날”이라는 명사구이지만, 문장에서는 때를 나타내는 수식어로 쓰입니다. 품사·구의 종류와 문장 성분은 구분해야 합니다. had an idea는 “한 가지 생각이 있었다 / 생각이 떠올랐다”입니다.",
+  "pattern": "3형식 (S + V + O)"
+ },
+ {
+  "source": 8,
+  "ko": "그는 아픈 사람 12명을 골라 두 명씩 6개 조를 만들었습니다.",
+  "chunks": [
+   [
+    "He",
+    "대명사",
+    "주어"
+   ],
+   [
+    "chose",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "twelve sick people",
+    "명사(구)",
+    "목적어"
+   ],
+   [
+    "and",
+    "접속사",
+    "연결어"
+   ],
+   [
+    "made",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "six pairs",
+    "명사(구)",
+    "목적어"
+   ]
+  ],
+  "note": "and가 chose twelve sick people과 made six pairs를 대등하게 연결합니다. 두 동사의 주어는 모두 He입니다. twelve sick people은 chose의 목적어이고, six pairs는 made의 목적어입니다. 한 조에 두 명씩 총 여섯 조입니다.",
+  "pattern": "3형식 + 3형식 · 주어 He 공유"
+ },
+ {
+  "source": 9,
+  "ko": "그런 다음 그는 각 조에 서로 다른 약을 주었습니다.",
+  "chunks": [
+   [
+    "Then",
+    "부사(구)",
+    "수식어"
+   ],
+   [
+    "he",
+    "대명사",
+    "주어"
+   ],
+   [
+    "gave",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "each pair",
+    "명사(구)",
+    "간접목적어"
+   ],
+   [
+    "different medicine",
+    "명사(구)",
+    "직접목적어"
+   ]
+  ],
+  "note": "give + 간접목적어(받는 대상) + 직접목적어(주는 것)의 4형식입니다. each pair는 약을 받는 각 조이고, different medicine은 주는 약입니다. each 뒤에는 단수 명사 pair를 씁니다.",
+  "pattern": "4형식 (S + V + IO + DO)"
+ },
+ {
+  "source": 10,
+  "ko": "예를 들어 한 조는 오렌지를 먹었습니다.",
+  "chunks": [
+   [
+    "For example",
+    "전치사구",
+    "수식어"
+   ],
+   [
+    "one pair",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "had",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "oranges",
+    "명사(구)",
+    "목적어"
+   ]
+  ],
+  "note": "For example은 전치사구이며, 예시를 도입하는 수식어입니다. had는 have의 과거형이고, 이 문맥에서는 “먹었다”라는 뜻입니다. oranges는 목적어입니다.",
+  "pattern": "3형식 (S + V + O)"
+ },
+ {
+  "source": 11,
+  "ko": "다른 한 조는 식초를 마셨습니다.",
+  "chunks": [
+   [
+    "Another pair",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "drank",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "vinegar",
+    "명사(구)",
+    "목적어"
+   ]
+  ],
+  "note": "another + 단수 명사는 “또 다른 하나의 ~”입니다. Another pair는 다른 한 조를 뜻합니다. drank는 drink의 과거형이며 vinegar는 “식초”입니다.",
+  "pattern": "3형식 (S + V + O)"
+ },
+ {
+  "source": 12,
+  "ko": "며칠 후 두 선원의 상태가 훨씬 더 좋아졌습니다.",
+  "chunks": [
+   [
+    "A few days later",
+    "부사(구)",
+    "수식어"
+   ],
+   [
+    "two sailors",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "became",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "much better",
+    "형용사(구)",
+    "보어"
+   ]
+  ],
+  "note": "A few days later는 “며칠 후에”라는 부사구입니다. become + 형용사는 “~한 상태가 되다”이고, better는 good/well의 비교급입니다. much는 비교급 better를 강조하여 “훨씬”이라는 뜻을 더합니다. much better 전체가 주어의 상태를 설명하는 형용사구 보어입니다.",
+  "pattern": "2형식 (S + V + C)"
+ },
+ {
+  "source": 15,
+  "ko": "오렌지에 들어 있는 비타민 C가 그들을 구했습니다.",
+  "chunks": [
+   [
+    "The vitamin C in the oranges",
+    "명사(구)",
+    "주어"
+   ],
+   [
+    "saved",
+    "동사(구)",
+    "서술어"
+   ],
+   [
+    "them",
+    "대명사",
+    "목적어"
+   ]
+  ],
+  "note": "The vitamin C in the oranges 전체가 명사구 주어입니다. 이 안에서 in the oranges는 vitamin C를 꾸며 “오렌지에 들어 있는 비타민 C”라는 뜻을 만듭니다. them은 오렌지를 먹은 두 선원을 가리킵니다.",
+  "pattern": "3형식 (S + V + O)"
+ }
 ];
+const BODY_COUNT=15;
+const posChoices=["명사(구)","대명사","동사(구)","형용사(구)","부사(구)","전치사구","접속사"];
+const roleChoices=["주어","서술어","목적어","보어","간접목적어","직접목적어","수식어","연결어"];
+const $=id=>document.getElementById(id);
+const show=id=>$(id).classList.remove("hidden");
+const hide=id=>$(id).classList.add("hidden");
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+let storageWarning=false;
+function warnStorage(){if(storageWarning)return;storageWarning=true;toast("이 브라우저에서는 학습 기록을 저장할 수 없습니다.")}
+function load(k,f){try{const v=localStorage.getItem(STORE+"_"+k);return v===null?f:JSON.parse(v)}catch(e){return f}}
+function save(k,v){try{localStorage.setItem(STORE+"_"+k,JSON.stringify(v))}catch(e){warnStorage()}}
+function remove(k){try{localStorage.removeItem(STORE+"_"+k)}catch(e){warnStorage()}}
+function dateText(){return new Date().toLocaleString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})}
+function normalize(t){return t.toLowerCase().replace(/[’']/g,"").replace(/[^a-z0-9\s]/g,"").trim().replace(/\s+/g," ")}
+function tokens(t){return t.replace(/[“”".,!?;:()]/g,"").split(/\s+/).filter(Boolean)}
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>e.classList.remove("show"),1600)}
+// Short, self-contained sound effects. The audio context is unlocked by a user gesture.
+let fxEnabled=load("fx_sound",true)!==false,fxContext=null,fxMaster=null;
+const reducedMotion=()=>window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function unlockEffects(){
+ if(!fxEnabled)return null;
+ try{
+  const AudioEngine=window.AudioContext||window.webkitAudioContext;
+  if(!AudioEngine)return null;
+  if(!fxContext||fxContext.state==="closed"){
+   fxContext=new AudioEngine();fxMaster=fxContext.createGain();fxMaster.gain.value=.24;fxMaster.connect(fxContext.destination);
+  }
+  if(fxContext.state==="suspended")fxContext.resume().catch(()=>{});
+  return fxContext;
+ }catch(e){return null}
+}
+document.addEventListener("pointerdown",unlockEffects,{capture:true,passive:true});
+document.addEventListener("keydown",unlockEffects,{capture:true});
+function updateEffectsToggle(){const b=$("effects-toggle");b.textContent=fxEnabled?"♪ 효과음 켜짐":"♪ 효과음 꺼짐";b.setAttribute("aria-pressed",String(fxEnabled))}
+$("effects-toggle").addEventListener("click",()=>{fxEnabled=!fxEnabled;save("fx_sound",fxEnabled);if(fxMaster){fxMaster.gain.cancelScheduledValues(fxContext.currentTime);fxMaster.gain.value=fxEnabled?.24:0;}if(fxEnabled)playEffect("tick");updateEffectsToggle()});
+function playEffect(level="item"){
+ if(!fxEnabled||document.hidden)return;
+ const ctx=unlockEffects();if(!ctx||!fxMaster)return;
+ const notes=level==="complete"?[523.25,659.25,783.99,1046.5]:level==="stage"?[659.25,830.61,987.77]:level==="tick"?[880]:[659.25,987.77];
+ const spacing=level==="complete"?.14:.085;
+ function schedule(){
+  if(!fxEnabled||ctx.state!=="running")return;
+  const now=ctx.currentTime+.012;
+  notes.forEach((frequency,i)=>{
+   const oscillator=ctx.createOscillator(),gain=ctx.createGain(),start=now+i*spacing;
+   const duration=level==="complete"?.34:level==="tick"?.13:.21;
+   oscillator.type="sine";oscillator.frequency.setValueAtTime(frequency,start);
+   gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(.58,start+.012);gain.gain.exponentialRampToValueAtTime(.001,start+duration);
+   oscillator.connect(gain);gain.connect(fxMaster);oscillator.start(start);oscillator.stop(start+duration+.025);
+   oscillator.onended=()=>{oscillator.disconnect();gain.disconnect()};
+  });
+ }
+ if(ctx.state==="running")schedule();else ctx.resume().then(schedule).catch(()=>{});
+}
+function visualPass(target,label="정답!",level="item"){
+ const rect=target&&target.getBoundingClientRect();
+ const x=rect?Math.min(innerWidth-55,Math.max(55,rect.left+rect.width/2)):innerWidth/2;
+ const y=rect?Math.min(innerHeight-85,Math.max(100,rect.top+rect.height/2)):Math.min(innerHeight*.36,280);
+ if(target){target.classList.remove("success-pulse");void target.offsetWidth;target.classList.add("success-pulse");setTimeout(()=>target.classList.remove("success-pulse"),550)}
+ if(level==="tick")return;
+ const badge=document.createElement("div");badge.className="pass-badge"+(level==="complete"?" complete":"");badge.textContent="✓ "+label;
+ badge.style.left=x+"px";badge.style.top=y+"px";badge.setAttribute("aria-hidden","true");document.body.appendChild(badge);setTimeout(()=>badge.remove(),level==="complete"?1500:620);
+ if(reducedMotion())return;
+ const count=level==="complete"?22:12;
+ for(let i=0;i<count;i++){
+  const dot=document.createElement("i"),angle=i/count*Math.PI*2,distance=level==="complete"?85+Math.random()*60:45+Math.random()*40;
+  dot.className="pass-spark";dot.style.left=x+"px";dot.style.top=y+"px";dot.style.background=["#1e9d65","#ffc756","#c56320"][i%3];
+  dot.style.setProperty("--dx",Math.cos(angle)*distance+"px");dot.style.setProperty("--dy",Math.sin(angle)*distance+"px");
+  document.body.appendChild(dot);setTimeout(()=>dot.remove(),720);
+ }
+}
+function passFeedback(target,label="정답!",level="item"){playEffect(level);visualPass(target,label,level)}
+updateEffectsToggle();
 
-const activeGrammarList = [
-  {"sentence":"Oranges [are] popular all around the world.","choices":["are","is","am","be"],"answer":"are","explain":"주어 Oranges가 복수이므로 be동사 are를 씁니다."},
-  {"sentence":"But oranges are not all the [same].","choices":["same","some","different","favorite"],"answer":"same","explain":"not all the same은 ‘모두 똑같은 것은 아니다’라는 뜻입니다."},
-  {"sentence":"Let’s [look] at two kinds of oranges.","choices":["look","looks","looking","looked"],"answer":"look","explain":"Let’s 뒤에는 동사원형이 옵니다. 따라서 look이 맞습니다."},
-  {"sentence":"two of the [world’s] favorite oranges","choices":["world’s","worlds","world","world is"],"answer":"world’s","explain":"‘세계의’라는 소유 관계를 나타내므로 world’s를 씁니다."},
-  {"sentence":"Valencia oranges [got] their name from a city in Spain.","choices":["got","getted","gets","getting"],"answer":"got","explain":"본문은 이름의 유래를 과거형 got으로 설명합니다. get의 과거형은 got입니다."},
-  {"sentence":"They are actually [from] the United States.","choices":["from","at","of","to"],"answer":"from","explain":"be from은 ‘~ 출신이다, ~에서 오다’라는 뜻입니다."},
-  {"sentence":"These oranges [have] thin skin and some seeds.","choices":["have","has","having","had"],"answer":"have","explain":"주어 These oranges가 복수이므로 have를 씁니다."},
-  {"sentence":"They are also very [juicy].","choices":["juicy","juice","juicily","juices"],"answer":"juicy","explain":"be동사 are 뒤에는 상태를 나타내는 형용사 juicy가 옵니다."},
-  {"sentence":"People make juice [with] Valencia oranges.","choices":["with","from to","at","for"],"answer":"with","explain":"make A with B는 ‘B를 이용해 A를 만들다’라는 뜻입니다."},
-  {"sentence":"The bottom of the fruit [looks] like a belly button.","choices":["looks","look","looking","to look"],"answer":"looks","explain":"주어 The bottom이 3인칭 단수이므로 looks가 맞습니다."},
-  {"sentence":"The fruit looks [like] a belly button.","choices":["like","at","for","from"],"answer":"like","explain":"look like는 ‘~처럼 보이다’라는 표현입니다."},
-  {"sentence":"These oranges have thick skin and [no] seeds.","choices":["no","not","any","some"],"answer":"no","explain":"no + 명사는 ‘어떤 ~도 없는’이라는 뜻입니다. no seeds는 ‘씨가 없는’입니다."},
-  {"sentence":"People love [eating] Navel oranges.","choices":["eating","eat","ate","eats"],"answer":"eating","explain":"love 뒤에는 동명사(-ing)를 써서 ‘~하는 것을 매우 좋아하다’를 나타낼 수 있습니다."},
-  {"sentence":"Meaning: What does ‘navel’ mean? [belly button]","choices":["belly button","thin skin","orange seed","fruit juice"],"answer":"belly button","explain":"본문의 그림 설명에서 Navel means a belly button이라고 알려 줍니다."},
-  {"sentence":"Detail: Which orange has thin skin and some seeds? [Valencia oranges]","choices":["Valencia oranges","Navel oranges","Both oranges","Neither orange"],"answer":"Valencia oranges","explain":"발렌시아 오렌지는 껍질이 얇고 씨가 조금 있습니다."},
-  {"sentence":"Detail: Which orange has thick skin and no seeds? [Navel oranges]","choices":["Navel oranges","Valencia oranges","Both oranges","Neither orange"],"answer":"Navel oranges","explain":"네이블 오렌지는 껍질이 두껍고 씨가 없습니다."},
-  {"sentence":"Detail: Why do people make juice with Valencia oranges? [They are very juicy.]","choices":["They are very juicy.","They have thick skin.","They have no seeds.","They look like belly buttons."],"answer":"They are very juicy.","explain":"발렌시아 오렌지는 즙이 매우 많기 때문에 사람들이 주스를 만듭니다."},
-  {"sentence":"Main Idea: What does the passage compare? [two kinds of oranges]","choices":["two kinds of oranges","two kinds of juice","two cities in Spain","two fruit farms"],"answer":"two kinds of oranges","explain":"이 글은 발렌시아 오렌지와 네이블 오렌지의 특징과 차이를 비교합니다."}
-];
+function celebrate(){playEffect("complete");visualPass(null,"학습 완료!","complete");if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const colors=["#c56320","#ffd16e","#1e9d65","#173c55"];for(let i=0;i<50;i++){const s=document.createElement("i");s.style.cssText=`position:fixed;z-index:99;left:${Math.random()*100}vw;top:-12px;width:8px;height:12px;background:${colors[i%4]};pointer-events:none;transition:transform 1.4s linear,top 1.4s ease-in`;document.body.appendChild(s);requestAnimationFrame(()=>{s.style.top="105vh";s.style.transform=`translateX(${(Math.random()-.5)*140}px) rotate(500deg)`});setTimeout(()=>s.remove(),1500)}}
+function progress(p,c,t){const r=t?Math.min(1,c/t):0;$(p+"-bar").style.width=Math.round(r*100)+"%";const s=r>=1?["🏅","완전 학습 완료"]:r>=.67?["🍊","완성까지 조금 더"]:r>=.34?["⚓","차근차근 배우는 중"]:["⛵","배움의 항해를 시작해요"];$(p+"-icon").textContent=s[0];$(p+"-progress-label").textContent=s[1]+" ("+Math.round(r*100)+"%)"}
+let activeSection="word-sec";
+function showSection(id){stopSpeech();cancelDrag();activeSection=id;document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".nav-btn").forEach(x=>{x.classList.toggle("active",x.dataset.target===id);x.setAttribute("aria-current",x.dataset.target===id?"page":"false")});if(id==="record-sec")renderRecords()}
+document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>showSection(b.dataset.target)));
 
-let selectedEnglishVoice=null;
-function loadEnglishVoice(){ if(!('speechSynthesis' in window)) return; const voices=window.speechSynthesis.getVoices(); selectedEnglishVoice=voices.find(v=>(v.lang==='en-US'||v.lang==='en_US')&&/samantha|alex|ava|allison|nicky|english|us/i.test(v.name))||voices.find(v=>v.lang==='en-US'||v.lang==='en_US')||voices.find(v=>/^en/i.test(v.lang))||null; }
-if('speechSynthesis' in window){loadEnglishVoice();window.speechSynthesis.onvoiceschanged=loadEnglishVoice;}
-function speak(text,rate=0.78,onend=null){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); loadEnglishVoice(); const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=rate; u.pitch=1; u.volume=1; if(selectedEnglishVoice)u.voice=selectedEnglishVoice; if(onend)u.onend=onend; window.speechSynthesis.speak(u); }
+// Only explicitly select en-US voices; otherwise let the device resolve en-US.
+let voice=null,audioLoop=false,audioTimer=null,speechGeneration=0,speedIndex=0;
+const rates=[.82,.65,.5],speedLabels=["미국식 보통","미국식 느리게","미국식 아주 느리게"];
+function findVoice(){if(!("speechSynthesis" in window))return;const vs=window.speechSynthesis.getVoices();voice=vs.find(v=>/^en[-_]us$/i.test(v.lang||""))||null}
+if("speechSynthesis" in window){findVoice();window.speechSynthesis.addEventListener("voiceschanged",findVoice)}
+function speak(t,done){if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){if(done)toast("이 기기는 음성 재생을 지원하지 않습니다.");return false}const generation=++speechGeneration;window.speechSynthesis.cancel();findVoice();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=rates[speedIndex];if(voice)u.voice=voice;u.onend=()=>{if(generation===speechGeneration&&done)done()};u.onerror=()=>{if(generation===speechGeneration){audioLoop=false;updateAudio()}};window.speechSynthesis.speak(u);return true}
+function updateAudio(){$("play-btn").textContent=audioLoop?"음성 멈춤":"음성 재생"}
+function stopSpeech(){audioLoop=false;clearTimeout(audioTimer);speechGeneration++;if("speechSynthesis" in window)window.speechSynthesis.cancel();updateAudio()}
+function currentSentence(){return sentences[writeQueue[writePos]]}
+function playLoop(){if(!audioLoop||!writeStarted||writeLocked||activeSection!=="write-sec")return;const s=currentSentence();if(!s)return;if(!speak(s.en,()=>{if(audioLoop)audioTimer=setTimeout(playLoop,900)})){audioLoop=false;updateAudio()}}
+$("play-btn").addEventListener("click",()=>{if(audioLoop){stopSpeech();return}audioLoop=true;playLoop();updateAudio()});
+$("speed-btn").addEventListener("click",()=>{speedIndex=(speedIndex+1)%rates.length;$("speed-btn").textContent=speedLabels[speedIndex];if(audioLoop){stopSpeech();audioLoop=true;playLoop();updateAudio()}});
+document.addEventListener("visibilitychange",()=>{if(document.hidden){stopSpeech();cancelDrag()}});
 
-let audioCtx=null, comboCount=0;
-function initAudio(){ if(!audioCtx && (window.AudioContext||window.webkitAudioContext)) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx && audioCtx.state==='suspended') audioCtx.resume(); }
-function tone(f,t,d,v=.08){ if(!audioCtx)return; const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type=t;o.frequency.setValueAtTime(f,audioCtx.currentTime);g.gain.setValueAtTime(v,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.01,audioCtx.currentTime+d);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d); }
-function sfxOK(){initAudio();tone(600,'sine',.1);setTimeout(()=>tone(820,'sine',.15),95)} function sfxNG(){initAudio();tone(250,'sawtooth',.2,.1)} function boom(){if(window.confetti)confetti({particleCount:110,spread:75,origin:{y:.62},colors:['#d46312','#9bd23c','#ffd54f']})}
-function shuffle(a){let arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
-function safeGet(k,d){try{return JSON.parse(localStorage.getItem(STORE+k)||JSON.stringify(d))}catch(e){return d}}
-function safeSet(k,v){localStorage.setItem(STORE+k,JSON.stringify(v))}
-function uniqueArr(key){return safeGet(key,[])} function markUnique(key,value){let arr=uniqueArr(key); if(!arr.includes(value)){arr.push(value);safeSet(key,arr)} return arr.length;}
-function pct(n,t){return t?Math.round(n/t*100):0}
-function showCombo(ok){ if(ok)comboCount++; else{comboCount=0;return} if(comboCount<2)return; const el=document.getElementById('combo'); el.innerText=comboCount+' COMBO! ✨'; el.classList.remove('combo-pop'); void el.offsetWidth; el.classList.add('combo-pop') }
-function rewardPop(text='정답! +10 EXP', big=false){const layer=document.getElementById('reward-layer'); if(!layer)return; const el=document.createElement('div'); el.className='reward-pop'+(big?' big':''); el.textContent=text; layer.appendChild(el); setTimeout(()=>el.remove(),1000); sparkle();}
-function sparkle(){const layer=document.getElementById('reward-layer'); if(!layer)return; const icons=['✨','⭐','💫','🎯','👏']; for(let i=0;i<8;i++){const sp=document.createElement('div'); sp.className='spark'; sp.textContent=icons[Math.floor(Math.random()*icons.length)]; sp.style.left=(50+(Math.random()*16-8))+'%'; sp.style.top=(39+(Math.random()*10-5))+'%'; sp.style.setProperty('--dx',(Math.random()*180-90)+'px'); sp.style.setProperty('--dy',(-70-Math.random()*80)+'px'); layer.appendChild(sp); setTimeout(()=>sp.remove(),900);}}
-function showStamp(msg='잘했어요!', icon='🏅'){const ov=document.getElementById('stamp-overlay'); if(!ov)return; document.querySelector('#stamp-overlay .stamp-icon').textContent=icon; document.getElementById('stamp-text').textContent=msg; ov.classList.add('show'); boom(); rewardPop('완료 보너스! +50 EXP',true); sfxOK();}
-function hideStamp(){document.getElementById('stamp-overlay')?.classList.remove('show')}
-function stopLoop(){isLoop=false;if('speechSynthesis'in window)window.speechSynthesis.cancel();clearTimeout(loopTimer);updatePlayBtn();}
-function showSection(id,btn){stopLoop();comboCount=0;document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active'); if(id==='dict-sec'&&!dictLoaded){loadDict();dictLoaded=true} if(id==='grammar-sec')renderGrammar();}
+let wordQueue=[],wordPos=0,wordCorrect=0,wordAnswered=false,wordRunning=false,wordTimer=null;
+function startWord(){clearTimeout(wordTimer);stopSpeech();wordQueue=shuffle(words.map((_,i)=>i));wordPos=0;wordCorrect=0;wordRunning=true;hide("word-intro");hide("word-result");show("word-quiz");renderWord()}
+function renderWord(){wordAnswered=false;const q=words[wordQueue[wordPos]];$("word-status").textContent=(wordPos+1)+" / "+wordQueue.length;progress("word",wordPos,wordQueue.length);$("word-en").textContent=q.en;if(activeSection==="word-sec")speak(q.en);const wrong=shuffle([...new Set(words.filter(x=>x.ko!==q.ko).map(x=>x.ko))]).slice(0,3);const opts=shuffle([q.ko,...wrong]);$("word-options").innerHTML="";opts.forEach((value,i)=>{const b=document.createElement("button");b.className="option";b.textContent=(i+1)+". "+value;b.dataset.correct=String(value===q.ko);b.addEventListener("click",()=>answerWord(b,value===q.ko));$("word-options").appendChild(b)})}
+function answerWord(b,ok){if(wordAnswered||!wordRunning)return;wordAnswered=true;$("word-options").querySelectorAll("button").forEach(x=>x.disabled=true);if(ok){b.classList.add("correct");wordCorrect++;stopSpeech();passFeedback(b,"정답!")}else{b.classList.add("wrong");$("word-options").querySelector('[data-correct="true"]').classList.add("correct");toast("정답을 확인하세요")}wordTimer=setTimeout(()=>{if(!wordRunning)return;wordPos++;wordAnswered=false;if(wordPos<wordQueue.length)renderWord();else finishWord(false)},ok?650:1500)}
+function finishWord(early){if(!wordRunning)return;clearTimeout(wordTimer);wordRunning=false;stopSpeech();const total=early?wordPos+(wordAnswered?1:0):wordQueue.length;if(!total){hide("word-quiz");show("word-intro");return}const score=Math.round(wordCorrect/total*100);const prev=load("word_record",{});const rounds=(Number.isInteger(prev.rounds)?prev.rounds:0)+(early?0:1);save("word_record",{date:dateText(),score,correct:wordCorrect,total,rounds,full:!early});progress("word",total,wordQueue.length);hide("word-quiz");show("word-result");$("word-result").querySelector("h2").textContent=early?"단어 중간 채점":"단어 테스트 완료";$("word-score").textContent=score+"점";$("word-detail").textContent="정답 "+wordCorrect+"개 / 응답 "+total+"문항 · 오답 "+(total-wordCorrect)+"개"+(early?" · 전체 "+words.length+"문항":" · "+rounds+"회차 완료");if(!early)celebrate()}
+$("word-start").addEventListener("click",startWord);$("word-stop").addEventListener("click",()=>finishWord(true));$("word-again").addEventListener("click",startWord);
 
-function renderStory(){const box=document.getElementById('story-list'); box.innerHTML=''; activeStorySections.forEach(sec=>{const card=document.createElement('div'); card.className='story-card'; let html=`<h3><span>${sec.emoji}</span><span>${sec.title}</span></h3>`; sec.lines.forEach(line=>{html+=`<div class="line-card"><div><span class="speaker">${line.speaker}:</span><span class="en-line">${line.en}</span></div><div class="ko-line">${line.ko}</div></div>`;}); card.innerHTML=html; box.appendChild(card);})}
-function toggleKorean(){document.querySelectorAll('.ko-line').forEach(x=>x.style.display=(x.style.display==='none'?'block':'none'))}
-function speakAllCurrentStory(){const text=activeStorySections.map(s=>s.lines.map(l=>l.en).join(' ')).join(' '); speak(text,.78);}
-function updateEvo(pre,cur,tot){
-  const r=tot?cur/tot:0; const s=[[0,'🌱','씨앗 시작'],[.25,'🌼','꽃 피우기'],[.5,'🍊','오렌지 자라기'],[.75,'🧃','특징 비교'],[1,'🏆','학습 완주']];
-  let st=s[0]; for(const x of s)if(r>=x[0])st=x; const pv=Math.floor(r*100);
-  const e=document.getElementById(pre+'e'), n=document.getElementById(pre+'n'), b=document.getElementById(pre+'b'); if(e)e.innerText=st[1]; if(n)n.innerText=`${st[2]} (${pv}%)`; if(b)b.style.width=pv+'%';
+let writeQueue=[],writePos=0,writeRound=1,roundErrors=new Set(),wrongAttempts=0,writeStarted=false,writeLocked=false,writeTimer=null,feedbackTimer=null;
+function validProgress(s){return !!(s&&Array.isArray(s.queue)&&s.queue.length&&s.queue.length<=sentences.length&&new Set(s.queue).size===s.queue.length&&s.queue.every(i=>Number.isInteger(i)&&sentences[i])&&Number.isInteger(s.pos)&&s.pos>=0&&s.pos<s.queue.length&&Number.isInteger(s.round)&&s.round>=1&&Array.isArray(s.errors)&&s.errors.every(i=>s.queue.includes(i))&&Number.isInteger(s.wrongAttempts)&&s.wrongAttempts>=0)}
+function restoreWrite(){const s=load("write_progress",null);if(!validProgress(s))return false;writeQueue=s.queue;writePos=s.pos;writeRound=s.round;roundErrors=new Set(s.errors);wrongAttempts=s.wrongAttempts;return true}
+function persistWrite(){save("write_progress",{queue:writeQueue,pos:writePos,round:writeRound,errors:[...roundErrors],wrongAttempts})}
+function lockWriting(locked){writeLocked=locked;["check-answer","clear-answer","speed-btn","play-btn"].forEach(id=>$(id).disabled=locked);document.querySelectorAll(".chip").forEach(c=>c.disabled=locked)}
+function startWrite(){clearTimeout(writeTimer);clearTimeout(feedbackTimer);if(!restoreWrite()){writeQueue=sentences.map((_,i)=>i);writePos=0;writeRound=1;roundErrors=new Set();wrongAttempts=0}writeStarted=true;hide("write-intro");hide("write-result");show("write-quiz");renderWrite()}
+// Desktop: the template's native browser drag image follows the mouse.
+// Touch: a floating preview follows the finger; the real word moves once at drop.
+let nativeDragged=null,touchDrag=null,touchFrame=0;
+function dropAreaAt(x,y){return [$("answer-area"),$("word-bank")].find(area=>{const r=area.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom})||null}
+function insertionAt(area,x,y,chip){
+ const siblings=[...area.querySelectorAll(".chip")].filter(c=>c!==chip);
+ // Compare by wrapped row first, then horizontal midpoint within that row.
+ const rows=[];
+ for(const c of siblings){const r=c.getBoundingClientRect();let row=rows.find(a=>Math.abs(a.top-r.top)<8);if(!row){row={top:r.top,bottom:r.bottom,cells:[]};rows.push(row)}row.bottom=Math.max(row.bottom,r.bottom);row.cells.push({chip:c,rect:r})}
+ if(!rows.length)return null;
+ const row=rows.reduce((best,r)=>Math.abs(y-(r.top+r.bottom)/2)<Math.abs(y-(best.top+best.bottom)/2)?r:best,rows[0]);
+ if(y>rows[rows.length-1].bottom+12)return null;
+ const cell=row.cells.find(c=>x<c.rect.left+c.rect.width/2);
+ if(cell)return cell.chip;
+ const nextRow=rows[rows.indexOf(row)+1];return nextRow?nextRow.cells[0].chip:null;
+}
+function insertChip(area,chip,next){
+ if(next===chip)return;
+ if(chip.parentElement===area&&chip.nextElementSibling===next)return;
+ if(next)area.insertBefore(chip,next);else area.appendChild(chip);
+ clearFeedback();
+}
+function clearDropMarks(){document.querySelectorAll(".drop-active").forEach(x=>x.classList.remove("drop-active"));const marker=$("drag-marker");if(marker)marker.remove()}
+function drawDropMark(area,next,chip){
+ clearDropMarks();if(!area)return;area.classList.add("drop-active");
+ const siblings=[...area.querySelectorAll(".chip")].filter(c=>c!==chip),last=siblings[siblings.length-1],r=next?next.getBoundingClientRect():last?last.getBoundingClientRect():area.getBoundingClientRect();
+ const marker=document.createElement("i");marker.id="drag-marker";marker.setAttribute("aria-hidden","true");
+ marker.style.left=(next?r.left-5:last?r.right+3:r.left+12)+"px";marker.style.top=(next||last?r.top:r.top+10)+"px";marker.style.height=(next||last?r.height:Math.max(24,r.height-20))+"px";document.body.appendChild(marker);
+}
+function renderTouchDrag(){
+ touchFrame=0;const d=touchDrag;if(!d||!d.moved)return;
+ d.ghost.style.transform=`translate3d(${d.x-d.offsetX}px,${d.y-d.offsetY}px,0)`;
+ d.area=dropAreaAt(d.x,d.y);d.next=d.area?insertionAt(d.area,d.x,d.y,d.chip):null;drawDropMark(d.area,d.next,d.chip);
+}
+function endTouchDrag(commit=false){
+ const d=touchDrag;if(!d)return;cancelAnimationFrame(touchFrame);touchFrame=0;
+ if(d.moved){renderTouchDrag();if(commit&&d.area&&!writeLocked)insertChip(d.area,d.chip,d.next);d.chip.dataset.ignoreClickUntil=String(performance.now()+450)}
+ touchDrag=null;if(d.ghost)d.ghost.remove();d.chip.classList.remove("dragging");
+ if(d.chip.hasPointerCapture&&d.chip.hasPointerCapture(d.id))d.chip.releasePointerCapture(d.id);clearDropMarks();
+}
+function cancelDrag(){endTouchDrag(false);if(nativeDragged)nativeDragged.classList.remove("dragging");nativeDragged=null;clearDropMarks()}
+function makeChip(item){
+ const c=document.createElement("button");c.type="button";c.className="chip";c.textContent=item.word;c.dataset.token=String(item.id);c.draggable=true;
+ c.addEventListener("click",()=>{if(writeLocked||performance.now()<Number(c.dataset.ignoreClickUntil||0))return;const target=c.parentElement===$("word-bank")?$("answer-area"):$("word-bank");target.appendChild(c);clearFeedback()});
+ c.addEventListener("dragstart",e=>{
+  if(writeLocked||touchDrag){e.preventDefault();return}nativeDragged=c;
+  if(e.dataTransfer){e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",c.dataset.token);const r=c.getBoundingClientRect();e.dataTransfer.setDragImage(c,e.clientX-r.left,e.clientY-r.top)}
+  requestAnimationFrame(()=>{if(nativeDragged===c)c.classList.add("dragging")});
+ });
+ c.addEventListener("dragend",()=>{c.dataset.ignoreClickUntil=String(performance.now()+200);cancelDrag()});
+ c.addEventListener("pointerdown",e=>{
+  if(e.pointerType!=="touch"&&e.pointerType!=="pen")return;if(writeLocked||touchDrag)return;
+  const r=c.getBoundingClientRect();touchDrag={chip:c,id:e.pointerId,startX:e.clientX,startY:e.clientY,x:e.clientX,y:e.clientY,offsetX:e.clientX-r.left,offsetY:e.clientY-r.top,moved:false,ghost:null,area:null,next:null};
+  if(c.setPointerCapture)c.setPointerCapture(e.pointerId);
+ });
+ c.addEventListener("pointermove",e=>{
+  const d=touchDrag;if(!d||d.chip!==c||d.id!==e.pointerId)return;d.x=e.clientX;d.y=e.clientY;
+  if(!d.moved&&Math.hypot(d.x-d.startX,d.y-d.startY)<7)return;
+  e.preventDefault();
+  if(!d.moved){d.moved=true;const r=c.getBoundingClientRect();d.ghost=c.cloneNode(true);d.ghost.removeAttribute("data-token");d.ghost.removeAttribute("draggable");d.ghost.className="chip drag-ghost";d.ghost.style.width=r.width+"px";d.ghost.style.height=r.height+"px";d.ghost.setAttribute("aria-hidden","true");d.ghost.tabIndex=-1;document.body.appendChild(d.ghost);c.classList.add("dragging")}
+  if(!touchFrame)touchFrame=requestAnimationFrame(renderTouchDrag);
+ });
+ c.addEventListener("pointerup",e=>{if(touchDrag&&touchDrag.id===e.pointerId){touchDrag.x=e.clientX;touchDrag.y=e.clientY;endTouchDrag(true)}});
+ c.addEventListener("pointercancel",e=>{if(touchDrag&&touchDrag.id===e.pointerId)endTouchDrag(false)});
+ return c;
+}
+for(const area of [$("answer-area"),$("word-bank")]){
+ area.addEventListener("dragover",e=>{if(!nativeDragged||writeLocked)return;e.preventDefault();if(e.dataTransfer)e.dataTransfer.dropEffect="move";area.classList.add("drop-active");insertChip(area,nativeDragged,insertionAt(area,e.clientX,e.clientY,nativeDragged))});
+ area.addEventListener("dragleave",e=>{if(!area.contains(e.relatedTarget))area.classList.remove("drop-active")});
+ area.addEventListener("drop",e=>{if(!nativeDragged||writeLocked)return;e.preventDefault();insertChip(area,nativeDragged,insertionAt(area,e.clientX,e.clientY,nativeDragged));clearDropMarks()});
 }
 
-let wList=[],wIdx=0,wOK=0,wBusy=false;
-function startWord(){wList=shuffle(activeWordList);wIdx=0;wOK=0;comboCount=0;document.getElementById('word-intro').style.display='none';document.getElementById('word-result').style.display='none';document.getElementById('word-quiz').style.display='block';loadWord();}
-function loadWord(){wBusy=false;updateEvo('wevo-',wIdx,wList.length);const q=wList[wIdx];document.getElementById('w-status').innerText=`문제 ${wIdx+1} / ${wList.length}`;document.getElementById('w-en').innerText=q.en;speak(q.en,.78);const opts=shuffle([{t:q.ko,ok:true},...shuffle(activeWordList.filter(w=>w.ko!==q.ko)).slice(0,3).map(w=>({t:w.ko,ok:false}))]);const div=document.getElementById('w-opts');div.innerHTML='';opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt-btn';b.innerText=`${i+1}. ${o.t}`;b.onclick=()=>handleWord(b,o.ok,div,q);div.appendChild(b)})}
-function handleWord(btn,ok,div,q){if(wBusy)return;wBusy=true;showCombo(ok);if(ok){sfxOK();btn.classList.add('correct');wOK++;markUnique('_wordCorrect',q.en);rewardPop('단어 정답! +10 EXP')}else{sfxNG();btn.classList.add('wrong');[...div.querySelectorAll('.opt-btn')].forEach(b=>{if(b.innerText.includes(q.ko))b.classList.add('correct')})}setTimeout(()=>{wIdx++;wIdx<wList.length?loadWord():finishWord()},650)}
-function finishWord(early=false){const tot=early?wIdx:wList.length;if(!tot){resetWord();return}updateEvo('wevo-',wIdx,wList.length);document.getElementById('word-quiz').style.display='none';document.getElementById('word-result').style.display='block';const c=progressCounts();document.getElementById('w-score').innerText=`${c.word}/${c.wordTotal}`;document.getElementById('w-detail').innerText=`이번 테스트 정답 ${wOK}/${tot} · 누적 단어 ${c.word}/${c.wordTotal}`;if(!early){setTimeout(()=>showStamp('단어 잘했어요!', '📚'),350)}checkAllDone();}
-function resetWord(){document.getElementById('word-result').style.display='none';document.getElementById('word-intro').style.display='block';}
+function renderWrite(){stopSpeech();clearTimeout(feedbackTimer);cancelDrag();const s=currentSentence();if(!s)return;$("write-status").textContent=writeRound===1?"영작 "+(writePos+1)+" / "+writeQueue.length:"오답 재시험 "+(writePos+1)+" / "+writeQueue.length;$("write-status").classList.toggle("retry",writeRound>1);progress("write",writePos,writeQueue.length);$("write-source").textContent=s.kind==="본문"?"본문 "+s.source+" / "+BODY_COUNT:s.kind+" · 확인 질문 "+s.source+" / 2";$("write-meaning").textContent=s.ko;$("answer-area").innerHTML="";$("word-bank").innerHTML="";shuffle(tokens(s.en).map((word,id)=>({word,id}))).forEach(x=>$("word-bank").appendChild(makeChip(x)));clearFeedback();lockWriting(false);persistWrite();$("mastery-info").textContent=writeRound===1?"1차 학습 중 · 틀린 문장은 오답 재시험에 포함됩니다.":"오답 재시험 "+(writeRound-1)+"회차 · 이번 회차도 틀린 문장은 다시 출제됩니다.";if(activeSection==="write-sec")speak(s.en)}
+function clearFeedback(){$("answer-area").classList.remove("bad","good")}
+function clearAnswer(){if(writeLocked)return;clearTimeout(feedbackTimer);const bank=$("word-bank");[...$("answer-area").children].forEach(x=>bank.appendChild(x));clearFeedback()}
+function checkWriting(){if(!writeStarted||writeLocked)return;clearTimeout(feedbackTimer);const answer=$("answer-area"),bank=$("word-bank");if(bank.children.length){answer.classList.add("bad");toast("남은 단어를 모두 사용하세요");feedbackTimer=setTimeout(clearFeedback,650);return}const built=[...answer.children].map(x=>x.textContent).join(" ");if(normalize(built)===normalize(currentSentence().en)){answer.classList.remove("bad");answer.classList.add("good");lockWriting(true);stopSpeech();passFeedback(answer,"통과!");writeTimer=setTimeout(advanceWriting,650)}else{roundErrors.add(writeQueue[writePos]);wrongAttempts++;persistWrite();answer.classList.add("bad");toast("단어 순서를 다시 확인하세요");feedbackTimer=setTimeout(clearFeedback,650)}}
+function advanceWriting(){if(!writeStarted||!writeLocked)return;writePos++;if(writePos<writeQueue.length){persistWrite();renderWrite();return}if(roundErrors.size){writeQueue=[...roundErrors].sort((a,b)=>a-b);writePos=0;writeRound++;roundErrors=new Set();persistWrite();toast("오답 재시험을 시작합니다");renderWrite();return}completeWriting()}
+function completeWriting(){stopSpeech();writeStarted=false;remove("write_progress");const retries=writeRound-1,prev=load("write_record",{}),rounds=(Number.isInteger(prev.rounds)?prev.rounds:0)+1;save("write_record",{date:dateText(),completed:sentences.length,total:sentences.length,retries,wrongAttempts,rounds});progress("write",sentences.length,sentences.length);hide("write-quiz");show("write-result");$("write-detail").textContent=sentences.length+"문항 모두 통과 · "+rounds+"회차 완료 · 오답 재시험 "+retries+"회 · 오답 시도 "+wrongAttempts+"회";celebrate()}
+function resetWrite(ask){if(ask&&!confirm("저장된 영작 진행을 처음부터 다시 시작할까요?"))return false;clearTimeout(writeTimer);clearTimeout(feedbackTimer);stopSpeech();remove("write_progress");writeStarted=false;writeQueue=[];writePos=0;writeRound=1;roundErrors=new Set();wrongAttempts=0;cancelDrag();lockWriting(false);hide("write-quiz");hide("write-result");show("write-intro");$("write-start").textContent="영작 시작";toast("영작 진행이 초기화되었습니다");return true}
+$("check-answer").addEventListener("click",checkWriting);$("clear-answer").addEventListener("click",clearAnswer);$("write-start").addEventListener("click",startWrite);$("write-reset").addEventListener("click",()=>resetWrite(true));$("write-reset-intro").addEventListener("click",()=>resetWrite(true));$("write-again").addEventListener("click",()=>{resetWrite(false);startWrite()});if(validProgress(load("write_progress",null)))$("write-start").textContent="이어하기";
 
-let dIdx=0,dictLoaded=false,isLoop=false,loopTimer=null; const speeds=[.78,.62,.5],sLabels=['🇺🇸 보통','🐢 느리게','🐌 아주 느리게'];let spIdx=0;
-function cleanWords(s){return s.replace(/[“”.,!?;:()—–-]/g,'').split(/\s+/).filter(Boolean)}
-function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'')}
-function currentSentence(){return activeSentenceList[dIdx]}
-function loopPlay(){if(!isLoop)return; const p=currentSentence(); speak(p.full,speeds[spIdx],()=>{if(isLoop)loopTimer=setTimeout(loopPlay,900)})}
-function toggleAudio(){if(isLoop)stopLoop();else{isLoop=true;loopPlay()}updatePlayBtn();}
-function updatePlayBtn(){const b=document.getElementById('play-btn');if(b){b.innerHTML=isLoop?'⏸️ 일시정지':'▶️ 이어듣기';b.className='audio-btn play-btn'+(isLoop?' playing':'')}}
-function toggleSpeed(){spIdx=(spIdx+1)%speeds.length;document.getElementById('speed-btn').innerHTML=sLabels[spIdx];if(isLoop){stopLoop();isLoop=true;loopPlay()}}
-function loadDict(){stopLoop();if(dIdx>=activeSentenceList.length)dIdx=0;updateEvo('devo-',dIdx,activeSentenceList.length);const p=currentSentence();document.getElementById('d-status').innerText=`영작 ${dIdx+1} / ${activeSentenceList.length}`;document.getElementById('d-ko').innerText=`${p.speaker}: ${p.ko}`;document.getElementById('d-source').innerText=p.section;const aa=document.getElementById('answer-area'),sa=document.getElementById('scramble-area');aa.innerHTML='';sa.innerHTML='';aa.style.background='var(--light)';aa.style.borderColor='var(--main)';shuffle(cleanWords(p.full)).forEach((w,i)=>{const b=document.createElement('button');b.type='button';b.className='word-chip';b.innerText=w;b.onclick=function(){(this.parentElement.id==='scramble-area'?aa:sa).appendChild(this);if(sa.children.length===0)checkDict();};sa.appendChild(b)}); setupSortable(); isLoop=true;loopPlay();updatePlayBtn();}
-function setupSortable(){ if(window.Sortable){ if(window._ansSortable) window._ansSortable.destroy(); if(window._srcSortable) window._srcSortable.destroy(); const group={name:'words',pull:true,put:true}; window._ansSortable=new Sortable(document.getElementById('answer-area'),{animation:180,group,onEnd:()=>{if(document.getElementById('scramble-area').children.length===0)checkDict()}}); window._srcSortable=new Sortable(document.getElementById('scramble-area'),{animation:180,group,onEnd:()=>{if(document.getElementById('scramble-area').children.length===0)checkDict()}}); } }
-function checkDict(){const ans=[...document.getElementById('answer-area').children].map(x=>x.innerText).join(' ');const correct=currentSentence().full;if(norm(ans)===norm(correct)){sfxOK();showCombo(true);rewardPop('영작 성공! +10 EXP');document.getElementById('answer-area').style.background='#d4edda';markUnique('_dictDone',String(dIdx));stopLoop();setTimeout(nextDict,650)}else{sfxNG();showCombo(false);const aa=document.getElementById('answer-area');aa.style.background='#fde8e8';aa.style.borderColor='var(--red)';setTimeout(()=>{aa.style.background='var(--light)';aa.style.borderColor='var(--main)'},450)}}
-function nextDict(){dIdx++; if(dIdx<activeSentenceList.length){loadDict();}else{updateEvo('devo-',activeSentenceList.length,activeSentenceList.length);setTimeout(()=>showStamp('영작 잘했어요!', '✍️'),250);checkAllDone();dIdx=0;loadDict();}}
-function showAnswerHint(){const p=currentSentence(); alert(p.full);}
+let analysisIndex=0,analysisStage=1,activeChunk=0,analysisAnswers=[],analysisStarted=false;
+function startAnalysis(){analysisIndex=0;analysisStarted=true;hide("analysis-intro");hide("analysis-result");show("analysis-quiz");renderAnalysis()}
+function renderAnalysis(){analysisStage=1;activeChunk=0;const item=analysisData[analysisIndex];analysisAnswers=new Array(item.chunks.length).fill(false);$("analysis-count").textContent=(analysisIndex+1)+" / "+analysisData.length;$("analysis-stage").textContent="1단계: 품사·구";$("analysis-stage").classList.remove("two");$("analysis-ko").textContent="[본문 "+item.source+"] "+item.ko;$("analysis-explain").classList.remove("show");$("analysis-result-box").innerHTML="";$("analysis-choices").style.display="flex";progress("analysis",analysisIndex,analysisData.length);buildChunks();buildChoices()}
+function buildChunks(){const box=$("analysis-chunks");box.innerHTML="";analysisData[analysisIndex].chunks.forEach((c,i)=>{const card=document.createElement("button");card.type="button";card.className="chunk"+(i===activeChunk?" active":"");card.innerHTML="<div class='chunk-en'></div><div class='chunk-answer'>?</div>";card.querySelector(".chunk-en").textContent=c[0];card.addEventListener("click",()=>{if(analysisAnswers[i])return;activeChunk=i;highlightChunks()});box.appendChild(card)})}
+function highlightChunks(){[...$("analysis-chunks").children].forEach((x,i)=>x.classList.toggle("active",i===activeChunk&&!analysisAnswers[i]))}
+function buildChoices(){const vals=analysisStage===1?posChoices:roleChoices;$("analysis-choices").innerHTML="";vals.forEach(v=>{const b=document.createElement("button");b.className="choice";b.textContent=v;b.addEventListener("click",()=>answerAnalysis(v));$("analysis-choices").appendChild(b)})}
+function answerAnalysis(v){if(!analysisStarted||analysisAnswers[activeChunk])return;const chunk=analysisData[analysisIndex].chunks[activeChunk],correct=chunk[analysisStage],cards=[...$("analysis-chunks").children],card=cards[activeChunk];if(v!==correct){card.style.borderColor="var(--red)";toast("다시 생각해 보세요");setTimeout(()=>card.style.borderColor="",400);return}card.style.borderColor="";analysisAnswers[activeChunk]=true;card.classList.add("done");card.classList.remove("active");card.querySelector(".chunk-answer").textContent=v;const next=analysisAnswers.indexOf(false);if(next>=0){passFeedback(card,"","tick");activeChunk=next;highlightChunks();return}$("analysis-choices").style.display="none";passFeedback($("analysis-chunks"),analysisStage===1?"1단계 통과!":"문장 분석 통과!","stage");if(analysisStage===1){$("analysis-details").innerHTML="<div class='detail'></div>";$("analysis-details").firstElementChild.textContent=analysisData[analysisIndex].note;$("analysis-explain").classList.add("show")}else{$("analysis-result-box").innerHTML="<div class='pattern'></div>";const p=$("analysis-result-box").firstElementChild;p.textContent=analysisData[analysisIndex].pattern;const b=document.createElement("button");b.id="next-analysis";b.className="primary";b.textContent=analysisIndex===analysisData.length-1?"분석 완료":"다음 문장";b.addEventListener("click",()=>{b.disabled=true;nextAnalysis()});p.appendChild(b)}}
+function startStage2(){if(!analysisStarted||analysisStage!==1||!analysisAnswers.every(Boolean))return;analysisStage=2;activeChunk=0;analysisAnswers.fill(false);$("analysis-stage").textContent="2단계: 문장 성분";$("analysis-stage").classList.add("two");$("analysis-explain").classList.remove("show");[...$("analysis-chunks").children].forEach((c,i)=>{c.classList.remove("done","active");if(i===0)c.classList.add("active");c.querySelector(".chunk-answer").textContent="?"});$("analysis-choices").style.display="flex";buildChoices()}
+function nextAnalysis(){if(!analysisStarted||analysisStage!==2||!analysisAnswers.every(Boolean))return;analysisIndex++;const prev=load("analysis_record",{}),full=analysisIndex===analysisData.length;const rounds=(Number.isInteger(prev.rounds)?prev.rounds:0)+(full?1:0);save("analysis_record",{date:dateText(),completed:analysisIndex,total:analysisData.length,rounds});if(!full)renderAnalysis();else{analysisStarted=false;progress("analysis",analysisData.length,analysisData.length);hide("analysis-quiz");show("analysis-result");$("analysis-result").querySelector("p").textContent=analysisData.length+"문장의 품사·구와 문장 성분을 모두 확인했습니다. · "+rounds+"회차 완료";celebrate()}}
+$("analysis-start").addEventListener("click",startAnalysis);$("analysis-step2").addEventListener("click",startStage2);$("analysis-again").addEventListener("click",startAnalysis);
 
-let gIdx=0;
-function renderGrammar(){updateEvo('gevo-',gIdx,activeGrammarList.length);const g=activeGrammarList[gIdx]||activeGrammarList[0];document.getElementById('g-status').innerText=`어법 ${gIdx+1} / ${activeGrammarList.length}`;const box=document.getElementById('grammar-box');const sentenceHtml=g.sentence.replace('['+g.answer+']',`<b style="color:var(--main)">_____</b>`);let html=`<div class="grammar-sentence">${sentenceHtml}</div><div class="g-grid">`;shuffle(g.choices).forEach((ch,i)=>{const safe=ch.replace(/&/g,'&amp;').replace(/"/g,'&quot;');html+=`<button class="g-choice" data-value="${safe}">${i+1}. ${ch}</button>`;});html+=`</div><div id="g-exp" class="g-explain"></div>`;box.innerHTML=html;document.querySelectorAll('.g-choice').forEach(b=>b.onclick=()=>pickGrammar(b,b.dataset.value));}
-function pickGrammar(el,val){const g=activeGrammarList[gIdx],ok=val===g.answer;document.querySelectorAll('.g-choice').forEach(x=>{x.classList.remove('correct','wrong');x.disabled=true; if(x.innerText.replace(/^\d+\.\s*/,'')===g.answer)x.classList.add('correct');});if(!ok)el.classList.add('wrong');showCombo(ok);if(ok){sfxOK();rewardPop('어법 정답! +10 EXP');markUnique('_grammarCorrect',String(gIdx));}else{sfxNG();}const exp=document.getElementById('g-exp');exp.innerHTML=`<b>${ok?'⭕ 정답':'❌ 오답'}</b><br>${g.explain}<button class="primary-btn orange" onclick="nextGrammar()">설명 읽었어요 · 다음으로</button>`;exp.classList.add('show');checkAllDone();}
-function nextGrammar(){gIdx++; if(gIdx>=activeGrammarList.length){updateEvo('gevo-',activeGrammarList.length,activeGrammarList.length);setTimeout(()=>showStamp('어법 잘했어요!', '📘'),250);gIdx=0;renderGrammar();checkAllDone();return} renderGrammar();}
+function renderRecords(){const box=$("record-list"),items=[],w=load("word_record",null),d=load("write_record",null),a=load("analysis_record",null),p=load("write_progress",null);const completed=r=>(r.rounds||0)+"회차 완료";if(w)items.push({name:"단어",value:w.score+"점",sub:w.date+" · "+w.correct+"/"+w.total+" 정답 · "+completed(w)+(w.full?"":" · 최근 중간 채점")});if(d)items.push({name:"영작",value:completed(d),sub:d.date+" · "+d.completed+"/"+d.total+" 통과 · 오답 재시험 "+d.retries+"회"});if(validProgress(p))items.push({name:"영작 진행 중",value:(p.pos+1)+" / "+p.queue.length+" 문항",sub:p.round===1?"1차 학습 · 영작 탭에서 이어하기 가능":"오답 재시험 "+(p.round-1)+"회차 · 영작 탭에서 이어하기 가능"});if(a)items.push({name:"문장 분석",value:completed(a),sub:a.date+" · 최근 학습 "+a.completed+"/"+a.total+" 완료"});if(!items.length){box.innerHTML="<div class='empty'>아직 저장된 학습 기록이 없습니다.</div>";return}box.innerHTML="";items.forEach(x=>{const c=document.createElement("div");c.className="record-card";c.innerHTML="<div class='record-head'><span class='record-name'></span><span class='record-value'></span></div><div class='record-sub'></div>";c.querySelector(".record-name").textContent=x.name;c.querySelector(".record-value").textContent=x.value;c.querySelector(".record-sub").textContent=x.sub;box.appendChild(c)})}
+$("clear-records").addEventListener("click",()=>{if(!confirm("학습 완료 기록과 완료 회차를 모두 비울까요? 영작 진행 중 기록은 유지됩니다."))return;["word_record","write_record","analysis_record"].forEach(remove);renderRecords();toast("완료 기록을 비웠습니다")});
+progress("word",0,words.length);progress("write",0,sentences.length);progress("analysis",0,analysisData.length);renderRecords();
 
-function progressCounts(){const word=uniqueArr('_wordCorrect').length; const dict=uniqueArr('_dictDone').length; const gram=uniqueArr('_grammarCorrect').length; return {word,dict,gram,wordTotal:activeWordList.length,dictTotal:activeSentenceList.length,gramTotal:activeGrammarList.length};}
-let _allStampShown=false;
-function checkAllDone(){const c=progressCounts(); if(!_allStampShown && c.word>=c.wordTotal && c.dict>=c.dictTotal && c.gram>=c.gramTotal){_allStampShown=true; setTimeout(()=>showStamp('전체 학습 완료! 잘했어요!', '🌟'),650);}}
-function renderHistory(){ const div=document.getElementById('hist-list'); if(!div)return; const c=progressCounts(); const rows=[['단어',c.word,c.wordTotal,'누적 정답 단어'],['영작',c.dict,c.dictTotal,'완성한 본문 문장'],['확인',c.gram,c.gramTotal,'누적 정답 문항']]; const totalDone=c.word+c.dict+c.gram, totalAll=c.wordTotal+c.dictTotal+c.gramTotal; let html=`<div class="finish-note">📌 기록은 이 브라우저에 자동 저장됩니다.<br>문장 수: 영작 ${c.dictTotal}개 · 단어 ${c.wordTotal}개 · 어법 ${c.gramTotal}개</div><div class="simple-summary">`; rows.forEach(([title,done,total,desc])=>{html+=`<div class="simple-card"><div class="simple-head"><div><div class="simple-title">${title}</div><div class="source-line">${desc}</div></div><div class="simple-count">${done}/${total}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(done,total)}%"></div></div></div>`}); html+=`<div class="simple-card" style="border-color:var(--accent)"><div class="simple-head"><div><div class="simple-title">전체 진행</div><div class="source-line">모든 학습 합산</div></div><div class="simple-count">${totalDone}/${totalAll}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(totalDone,totalAll)}%"></div></div></div></div>`; html+=`<button class="primary-btn orange" onclick="if(confirm('기록을 초기화할까요?')){['_wordCorrect','_dictDone','_grammarCorrect'].forEach(k=>localStorage.removeItem(STORE+k));_allStampShown=false;renderHistory();}">기록 초기화</button>`; div.innerHTML=html; }
-
-document.addEventListener('DOMContentLoaded',()=>{renderStory();renderHistory();});
 </script>
 </body>
 </html>
